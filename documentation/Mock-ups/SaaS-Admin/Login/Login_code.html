@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SaaS Admin Login</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#11bcd4", "background-light": "#f6f8f8", "background-dark": "#102022"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex min-h-screen flex-col">
+<header class="border-b border-gray-200/50 dark:border-gray-700/50">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-2">
+<svg class="h-6 w-6 text-primary" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+<h1 class="text-xl font-bold text-gray-900 dark:text-white">CloudAdmin</h1>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-md space-y-8">
+<div>
+<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome back</h2>
+<p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">Sign in to manage your dashboard</p>
+</div>
+<form action="#" class="mt-8 space-y-6" method="POST">
+<div class="space-y-4 rounded-lg">
+<div>
+<label class="sr-only" for="username">Username</label>
+<input class="relative block w-full appearance-none rounded-lg border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark px-3 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:z-10 focus:border-primary focus:outline-none focus:ring-primary sm:text-sm" id="username" name="username" placeholder="Username" required="" type="text"/>
+</div>
+<div>
+<label class="sr-only" for="password">Password</label>
+<input autocomplete="current-password" class="relative block w-full appearance-none rounded-lg border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark px-3 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:z-10 focus:border-primary focus:outline-none focus:ring-primary sm:text-sm" id="password" name="password" placeholder="Password" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-end">
+<div class="text-sm">
+<a class="font-medium text-primary hover:text-primary/80" href="#"> Forgot your password? </a>
+</div>
+</div>
+<div>
+<button class="group relative flex w-full justify-center rounded-lg border border-transparent bg-primary py-3 px-4 text-sm font-semibold text-white hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="submit">
+                Log In
+              </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+</body></html>
