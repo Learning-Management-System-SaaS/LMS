@@ -1,4 +1,4 @@
-import { Division } from "@prisma/client";
+import { Division } from "@/data/prisma/schema/division.prisma";
 import { makeNullFieldsOptional } from "../utils/typesUtilities";
 import { auditingFields } from "../types";
 
