@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit User</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#11bcd4", "background-light": "#f6f8f8", "background-dark": "#102022", "neutral-gray": "#6B7280", "dark-gray": "#1F2937", "error-red": "#EF4444"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .form-input {
+            background-color: #F3F4F6;
+            border: 1px solid #D1D5DB;
+            color: #1F2937;
+        }
+
+        .form-input:focus {
+            outline: 2px solid #3B82F6;
+            outline-offset: 2px;
+            border-color: transparent;
+        }
+        
+        .form-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .dark .form-input {
+            background-color: #374151;
+            border-color: #4B5563;
+            color: #F9FAFB;
+        }
+
+        .dark .form-input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .dark .form-input:focus {
+             outline-color: #3B82F6;
+        }
+        
+        select.form-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%236B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 3rem;
+        }
+
+        .dark select.form-input {
+             background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%239CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root" style='font-family: Inter, "Noto Sans", sans-serif;'>
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-10 sm:py-16 md:py-20">
+<div class="layout-content-container flex flex-col max-w-2xl flex-1 px-4 sm:px-6">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col">
+<p class="text-dark-gray dark:text-white text-3xl sm:text-4xl font-bold leading-tight tracking-tight">Edit User Account</p>
+<p class="text-neutral-gray dark:text-gray-400 text-base font-normal leading-normal mt-2">Manage user account details and permissions.</p>
+</div>
+</div>
+<div class="flex flex-col gap-8 mt-10">
+<label class="flex flex-col w-full">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Tenant</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal" disabled="" value="Main Tenant"/>
+</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Division</p>
+<select class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal">
+<option value="one">Select Division</option>
+<option value="two">Sales</option>
+<option value="three">Marketing</option>
+<option value="four">Engineering</option>
+</select>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Role</p>
+<select class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal">
+<option value="one">Select Role</option>
+<option selected="" value="two">Admin</option>
+<option value="three">User</option>
+</select>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">First Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal" placeholder="Enter first name" value="John"/>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Last Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal" placeholder="Enter last name" value="Doe"/>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<label class="flex flex-col w-full">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Email Address</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal" placeholder="Enter email address" type="email" value="john.doe@example.com"/>
+</label>
+<label class="flex flex-col w-full">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">Phone Number</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal" placeholder="Enter phone number" type="tel" value="+1 (555) 123-4567"/>
+</label>
+</div>
+<div class="relative flex flex-col w-full">
+<p class="text-dark-gray dark:text-gray-300 text-base font-medium leading-normal pb-2">New Password</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-gray dark:text-white h-14 p-4 text-base font-normal leading-normal pr-12" placeholder="Leave blank to keep current password" type="password" value="************"/>
+<button class="absolute right-4 top-11 text-neutral-gray dark:text-gray-400">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+<p class="text-neutral-gray dark:text-gray-400 text-sm mt-2">Leave blank to keep the current password.</p>
+</div>
+<div class="flex flex-col sm:flex-row-reverse gap-4 mt-6">
+<button class="flex items-center justify-center rounded-lg px-6 py-3 h-14 bg-primary text-white text-base font-semibold leading-normal shadow-md hover:bg-blue-600 transition-colors duration-200 disabled:bg-primary/50 disabled:cursor-not-allowed">
+                                Save Changes
+                           </button>
+<button class="flex items-center justify-center rounded-lg px-6 py-3 h-14 bg-gray-200 dark:bg-gray-700 text-dark-gray dark:text-white text-base font-semibold leading-normal hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">
+                                Cancel
+                           </button>
+</div>
+</div>
+<div class="fixed bottom-5 right-5 flex items-center gap-4 bg-green-100 dark:bg-green-900 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 text-sm font-medium p-4 rounded-lg shadow-lg opacity-0 translate-y-4 transition-all duration-300 data-[show=true]:opacity-100 data-[show=true]:translate-y-0" data-show="false" role="alert">
+<span class="material-symbols-outlined">check_circle</span>
+<p>User account updated successfully.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
