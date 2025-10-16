@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#11bed4",
+              "background-light": "#f6f8f8",
+              "background-dark": "#102022",
+            },
+            fontFamily: {
+              display: ["Inter"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-b-black/10 px-10 py-3 dark:border-b-white/10">
+<div class="flex items-center gap-4 text-black dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-lg font-bold">Access Control</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex items-center gap-6 text-sm font-medium text-black/60 dark:text-white/60">
+<a class="transition-colors hover:text-black dark:hover:text-white" href="#">Overview</a>
+<a class="text-black dark:text-white" href="#">Permissions</a>
+<a class="transition-colors hover:text-black dark:hover:text-white" href="#">Roles</a>
+<a class="transition-colors hover:text-black dark:hover:text-white" href="#">Users</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex size-9 items-center justify-center rounded-full bg-background-light text-black/60 transition-colors hover:bg-black/5 hover:text-black dark:bg-background-dark dark:text-white/60 dark:hover:bg-white/5 dark:hover:text-white">
+<span class="material-symbols-outlined text-xl"> help </span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBCvDHC7Fup26aQ45w0xmNqwajlCApE6hPPZFeVbyw-WDFdsLPD57BaU8ra4TOim8rY2gJRjMN2hPYcl6_DvA1H1W1_KYi0kf8VG2flIpYDIO16GEoBndQ9DrScuUrKsjz2geBL9HPBNLLlJwo0u3NlwlLBMgcm5VotQnq8jIVlbv34_Uzz5QIu_ebC_s2_rwhyXVWujEiXvcH37Bwy7qaYrLQxLpy8UbfQ0aKwrn0PvSQ8ccuW-gm4pQMFWfeUKXxvmWaUFHb4AWX3");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-10 py-8">
+<div class="mx-auto max-w-4xl">
+<div class="mb-8">
+<div class="flex items-center gap-2 text-sm text-black/60 dark:text-white/60">
+<a class="hover:text-black dark:hover:text-white" href="#">Permissions</a>
+<span>/</span>
+<span class="text-black dark:text-white">View Permission</span>
+</div>
+<div class="mt-4 flex items-start justify-between">
+<div>
+<h1 class="text-3xl font-bold text-black dark:text-white">Permission Details</h1>
+<p class="mt-1 text-black/60 dark:text-white/60">View and manage the details of this permission.</p>
+</div>
+</div>
+</div>
+<div class="rounded-lg border border-black/10 bg-white dark:border-white/10 dark:bg-background-dark">
+<div class="border-b border-black/10 p-6 dark:border-white/10">
+<h2 class="text-xl font-bold text-black dark:text-white">Permission Information</h2>
+</div>
+<div class="divide-y divide-black/10 p-6 dark:divide-white/10">
+<div class="grid grid-cols-3 gap-4 py-4">
+<div class="text-sm text-black/60 dark:text-white/60">Name</div>
+<div class="col-span-2 text-sm text-black dark:text-white">View Reports</div>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4">
+<div class="text-sm text-black/60 dark:text-white/60">Description</div>
+<div class="col-span-2 text-sm text-black dark:text-white">Allows users to view reports and dashboards.</div>
+</div>
+<div class="grid grid-cols-3 gap-4 py-4">
+<div class="text-sm text-black/60 dark:text-white/60">URL</div>
+<div class="col-span-2 text-sm font-mono text-primary">/reports</div>
+</div>
+</div>
+<div class="flex justify-end gap-3 border-t border-black/10 bg-background-light p-4 dark:border-white/10 dark:bg-background-dark/50">
+<button class="rounded-lg bg-black/5 px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-black/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
+                Delete
+              </button>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90">
+                Save Changes
+              </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

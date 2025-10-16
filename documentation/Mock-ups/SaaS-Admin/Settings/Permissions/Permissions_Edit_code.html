@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#11bed4",
+              "background-light": "#f6f8f8",
+              "background-dark": "#102022",
+            },
+            fontFamily: {
+              display: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<title>Edit Permission</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+<div class="flex flex-col min-h-screen">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-10 py-3">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_535">
+<rect fill="white" height="48" width="48"></rect>
+</clipPath>
+</defs>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Access Control</h1>
+</div>
+<nav class="flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium text-primary" href="#">Permissions</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Roles</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Users</a>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0B81ut-c6K77TAJUMRU6_ToWm4aWV2_lH2oN54AMyR8WtX3TmsCvMxir3cPcTkduj1BIoqgBE53axYGU62ADZOf4Us_NyJn9_dmZeDDcVIcB-Gd3l0DPBl6HwihuQefaS4XBJK6oMkhLCYW-f15dc85-s1mihlCfIQfRUpPEI9riFxsVh4UFsl0CbqfO7xjICGTjG6WrvPfHn4GVBUB7FHYOH125UzajS4DVoKAAUJbjyF9r7AvL5SflOZpzihYVIgOgyzP2JU3Uh");'></div>
+</nav>
+</header>
+<main class="flex-grow flex items-center justify-center py-12 px-4">
+<div class="w-full max-w-lg mx-auto">
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Edit Permission</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-2">Modify the details of the selected permission.</p>
+</div>
+<form class="space-y-6 bg-white dark:bg-background-dark/50 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="permission-name">Permission Name</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900/40 shadow-sm focus:border-primary focus:ring-primary text-slate-900 dark:text-white" id="permission-name" name="permission-name" type="text" value="manage-billing"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="description">Description</label>
+<div class="mt-1">
+<textarea class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900/40 shadow-sm focus:border-primary focus:ring-primary text-slate-900 dark:text-white" id="description" name="description" rows="4">Allows users to view and manage billing information, subscriptions, and payment methods.</textarea>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="url">URL</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900/40 shadow-sm focus:border-primary focus:ring-primary text-slate-900 dark:text-white" id="url" name="url" type="text" value="/settings/billing"/>
+</div>
+</div>
+<div class="flex justify-end pt-4">
+<button class="inline-flex justify-center rounded-lg py-2 px-4 text-sm font-semibold text-white bg-primary hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-light dark:focus-visible:ring-offset-background-dark transition-colors" type="submit">
+                Save Changes
+              </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+
+</body></html>
