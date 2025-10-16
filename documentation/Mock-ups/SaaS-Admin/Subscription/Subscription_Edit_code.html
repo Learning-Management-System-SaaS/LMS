@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Subscription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#11bcd4", "background-light": "#f6f8f8", "background-dark": "#102022", "text-light": "#333333", "text-dark": "#F5F7FA", "accent-success": "#7ED321", "accent-error": "#D0021B", "border-light": "#CCCCCC", "border-dark": "#4A5568"}, fontFamily: {display: "Manrope"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-4xl flex-1">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-4xl font-black leading-tight tracking-tight">Edit Subscription</p>
+<p class="text-base font-normal leading-normal text-gray-500 dark:text-gray-400">Dashboard / Subscriptions / #S12345</p>
+</div>
+</div>
+<div class="p-4 mt-8 bg-white dark:bg-background-dark shadow-md rounded-xl border border-border-light dark:border-border-dark">
+<h2 class="text-xl font-bold mb-6">Subscription Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">Tenant Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 placeholder:text-gray-400 p-4 text-base font-normal" disabled="" value="John Doe"/>
+</label>
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">Plan</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 p-4 text-base font-normal appearance-none bg-no-repeat bg-right" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27%23333333%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M215.39,92.61a8,8,0,0,0-11.32,0L128,168.69,51.93,92.61a8,8,0,0,0-11.32,11.32l82.06,82.05a8,8,0,0,0,11.32,0l81.39-82.05A8,8,0,0,0,215.39,92.61Z%27%3e%3c/path%3e%3c/svg%3e');">
+<option value="basic">Basic</option>
+<option selected="" value="premium">Premium</option>
+<option value="enterprise">Enterprise</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">Start Date</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 placeholder:text-gray-400 p-4 text-base font-normal" type="date" value="2024-01-01"/>
+</label>
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">End Date</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 placeholder:text-gray-400 p-4 text-base font-normal" type="date" value="2025-01-01"/>
+</label>
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">Cost</p>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">$</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 placeholder:text-gray-400 pl-8 pr-4 py-4 text-base font-normal" type="number" value="150.00"/>
+</div>
+</label>
+<label class="flex flex-col">
+<p class="text-base font-medium pb-2">Status</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 p-4 text-base font-normal appearance-none bg-no-repeat bg-right" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27%23333333%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M215.39,92.61a8,8,0,0,0-11.32,0L128,168.69,51.93,92.61a8,8,0,0,0-11.32,11.32l82.06,82.05a8,8,0,0,0,11.32,0l81.39-82.05A8,8,0,0,0,215.39,92.61Z%27%3e%3c/path%3e%3c/svg%3e');">
+<option selected="" value="active">Active</option>
+<option value="paused">Paused</option>
+<option value="canceled">Canceled</option>
+</select>
+</label>
+<label class="flex flex-col md:col-span-2">
+<p class="text-base font-medium pb-2">Payment Status</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 h-14 p-4 text-base font-normal appearance-none bg-no-repeat bg-right" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27%23333333%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M215.39,92.61a8,8,0,0,0-11.32,0L128,168.69,51.93,92.61a8,8,0,0,0-11.32,11.32l82.06,82.05a8,8,0,0,0,11.32,0l81.39-82.05A8,8,0,0,0,215.39,92.61Z%27%3e%3c/path%3e%3c/svg%3e');">
+<option selected="" value="paid">Paid</option>
+<option value="pending">Pending</option>
+<option value="overdue">Overdue</option>
+</select>
+</label>
+</div>
+</div>
+<div class="p-4 mt-8 bg-white dark:bg-background-dark shadow-md rounded-xl border border-border-light dark:border-border-dark">
+<h2 class="text-xl font-bold mb-6">Plan Features</h2>
+<div class="space-y-4">
+<label class="flex items-center space-x-3">
+<input checked="" class="form-checkbox h-5 w-5 text-primary rounded border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 focus:ring-primary" type="checkbox"/>
+<span>Online Rent Collection</span>
+</label>
+<label class="flex items-center space-x-3">
+<input checked="" class="form-checkbox h-5 w-5 text-primary rounded border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 focus:ring-primary" type="checkbox"/>
+<span>Maintenance Tracking</span>
+</label>
+<label class="flex items-center space-x-3">
+<input checked="" class="form-checkbox h-5 w-5 text-primary rounded border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 focus:ring-primary" type="checkbox"/>
+<span>Document Storage</span>
+</label>
+<label class="flex items-center space-x-3">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-border-light dark:border-border-dark bg-background-light dark:bg-gray-700 focus:ring-primary" type="checkbox"/>
+<span>Advanced Reporting</span>
+</label>
+</div>
+</div>
+<div class="flex justify-end gap-4 mt-8 p-4">
+<button class="px-6 py-3 rounded-lg bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">Cancel</button>
+<button class="px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-blue-600 transition-colors flex items-center gap-2 disabled:bg-primary/50 disabled:cursor-not-allowed">
+<span>Save Changes</span>
+<!-- <span class="material-symbols-outlined text-base animate-spin hidden">sync</span> -->
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
