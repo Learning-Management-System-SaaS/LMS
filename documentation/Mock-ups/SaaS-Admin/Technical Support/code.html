@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Support Ticket Details</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11bed4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex min-h-screen">
+<aside class="w-64 bg-background-light dark:bg-background-dark border-r border-primary/20 dark:border-primary/10 flex flex-col">
+<div class="p-6">
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Acme Co</h1>
+</div>
+<nav class="flex-grow px-4">
+<ul>
+<li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<svg class="icon" viewBox="0 0 256 256"><path d="M218.83,103.77l-80-75.48a1.14,1.14,0,0,1-.11-.11,16,16,0,0,0-21.53,0l-.11.11L37.17,103.77A16,16,0,0,0,32,115.55V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V160h32v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V115.55A16,16,0,0,0,218.83,103.77ZM208,208H160V160a16,16,0,0,0-16-16H112a16,16,0,0,0-16,16v48H48V115.55l.11-.1L128,40l79.9,75.43.11.1Z"></path></svg>
+<span>Dashboard</span>
+</a></li>
+<li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<svg class="icon" viewBox="0 0 256 256"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path></svg>
+<span>Users</span>
+</a></li>
+<li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<svg class="icon" viewBox="0 0 256 256"><path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z"></path></svg>
+<span>Subscriptions</span>
+</a></li>
+<li><a class="flex items-center gap-3 p-3 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary dark:text-primary" href="#">
+<svg class="icon text-primary" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,168a12,12,0,1,1,12-12A12,12,0,0,1,128,192Zm8-48.72V144a8,8,0,0,1-16,0v-8a8,8,0,0,1,8-8c13.23,0,24-9,24-20s-10.77-20-24-20-24,9-24,20v4a8,8,0,0,1-16,0v-4c0-19.85,17.94-36,40-36s40,16.15,40,36C168,125.38,154.24,139.93,136,143.28Z"></path></svg>
+<span class="font-bold">Support</span>
+</a></li>
+<li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<svg class="icon" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path></svg>
+<span>Settings</span>
+</a></li>
+</ul>
+</nav>
+</aside>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<div class="mb-6 text-sm text-gray-500 dark:text-gray-400">
+<a class="hover:text-primary" href="#">Support</a>
+<span class="mx-2">/</span>
+<span class="text-gray-900 dark:text-white">Ticket #12345</span>
+</div>
+<div class="mb-8">
+<h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Issue with payment processing</h2>
+<p class="text-gray-500 dark:text-gray-400">Submitted by <span class="text-gray-900 dark:text-white font-medium">Alex Bennett</span> on July 26, 2024</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg border border-primary/20 dark:border-primary/10">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Description</h3>
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                I'm experiencing issues with payment processing. When I try to subscribe to the premium plan, the payment fails. I've tried multiple payment methods, but none seem to work. Please assist me in resolving this issue as soon as possible.
+                            </p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg border border-primary/20 dark:border-primary/10">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Agent Notes</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-cover bg-center shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_0G4ata9aS0RqHs62XUrAE_Pt8BlzCVb8pAeqZ13735cb7UXClvJXY0T1Tz5vP40c4vmhQM1FA1VbDqAoZYfxmzUgvXK_7uoLTSUKjZ7g3nuB31K31LiGATDu_8yrnKIwGxUhpwW6PU_NB-B1a-z9y_-_0oERw6O_i6VaU5aA1Pqv9DAYut2C3rcGj7vTHujsFOGuxMUTUQuAOrPq6NiSMpd7EvHhDHi6meZLgEtQSfikDt-E5LE9CUOJSBpg_97s6IiwXgYfA24");'></div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<p class="font-bold text-gray-900 dark:text-white">Support Agent</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">July 27, 2024</p>
+</div>
+<div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+<p class="text-gray-800 dark:text-gray-200">Thank you for reaching out, Alex. We're looking into the issue with your payment processing. We'll update you as soon as we have a resolution.</p>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-cover bg-center shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_0G4ata9aS0RqHs62XUrAE_Pt8BlzCVb8pAeqZ13735cb7UXClvJXY0T1Tz5vP40c4vmhQM1FA1VbDqAoZYfxmzUgvXK_7uoLTSUKjZ7g3nuB31K31LiGATDu_8yrnKIwGxUhpwW6PU_NB-B1a-z9y_-_0oERw6O_i6VaU5aA1Pqv9DAYut2C3rcGj7vTHujsFOGuxMUTUQuAOrPq6NiSMpd7EvHhDHi6meZLgEtQSfikDt-E5LE9CUOJSBpg_97s6IiwXgYfA24");'></div>
+<div class="flex-1">
+<textarea class="form-textarea w-full rounded-lg border-primary/30 dark:border-primary/20 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary placeholder-gray-500 dark:placeholder-gray-400" placeholder="Add a note..." rows="4"></textarea>
+<div class="mt-2 flex justify-end">
+<button class="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">Post Note</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg border border-primary/20 dark:border-primary/10">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Details</h3>
+<dl class="space-y-4">
+<div>
+<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Ticket ID</dt>
+<dd class="mt-1 text-gray-900 dark:text-white">#12345</dd>
+</div>
+<div>
+<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Requester</dt>
+<dd class="mt-1 text-gray-900 dark:text-white">Alex Bennett (alex.bennett@example.com)</dd>
+</div>
+<div>
+<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Priority</dt>
+<dd class="mt-1"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">High</span></dd>
+</div>
+<div>
+<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Status</dt>
+<dd class="mt-1"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Open</span></dd>
+</div>
+</dl>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg border border-primary/20 dark:border-primary/10">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Actions</h3>
+<div class="space-y-3">
+<button class="w-full bg-primary/20 dark:bg-primary/30 text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">Assign to Agent</button>
+<button class="w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">Update Status</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
