@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SaaS Admin - Manage Tenants</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#11bcd4", "background-light": "#f6f8f8", "background-dark": "#102022", secondary: "#6B7280", success: "#10B981", danger: "#EF4444", warning: "#F59E0B"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-10 py-4 bg-white dark:bg-background-dark sticky top-0 z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-gray-900 dark:text-white">
+<span class="material-symbols-outlined text-primary text-3xl">domain</span>
+<h2 class="text-xl font-bold tracking-tight">SaaS Admin</h2>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium text-primary dark:text-primary" href="#">Tenants</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9GvPMCMtAosgofEGTFy1RWOltDlo5zOX5Z6oVnUJvtYdDBYaiLGs7zVXZJY3Py8gjJOQzsWJD2f90KT27kOkPGeTS9mYNIRRB3-tDxhhDXoxR44pPt0jxblKl-9XxMa3Yn_AdSRQNA5BteRaYgD6i8Vt9Pte15eZ1monKZCWJRfZ-3VxuKoCUO0Y-FUbFyRugUAOUMgmUHSugqZuMT6pLFZHcpGHSWm-3A-mu8oNGE0dKF4DSqI3b7d95qFrQJPkY4vYQTEACWg");'></div>
+</div>
+</header>
+<div class="flex flex-1">
+<main class="flex-1 p-8">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Tenants</h1>
+<p class="text-secondary mt-1">Manage your tenants</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 h-10 px-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Export to CSV</span>
+</button>
+<button class="flex items-center gap-2 h-10 px-4 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary/90">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="truncate">Add New Tenant</span>
+</button>
+</div>
+</div>
+<div class="mb-6">
+<label class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary">search</span>
+<input class="form-input w-full pl-12 pr-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-secondary" placeholder="Search by tenant name..." type="text"/>
+</label>
+</div>
+<div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+<table class="w-full">
+<thead class="bg-gray-50 dark:bg-gray-700/50">
+<tr>
+<th class="p-4 w-12 text-left">
+<input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="p-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Tenant Name</th>
+<th class="p-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Subscription</th>
+<th class="p-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Status</th>
+<th class="p-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Location</th>
+<th class="p-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+<td class="p-4 w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4 font-medium text-gray-900 dark:text-white">Innovate Inc.</td>
+<td class="p-4 text-secondary">Premium</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-success/10 px-3 py-1 text-sm font-medium text-success">
+<span class="h-2 w-2 rounded-full bg-success"></span>
+                                            Active
+                                        </span>
+</td>
+<td class="p-4 text-secondary">San Francisco, CA</td>
+<td class="p-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Edit</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Details</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-danger/50 text-sm font-medium text-danger hover:bg-danger/10">Delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+<td class="p-4 w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4 font-medium text-gray-900 dark:text-white">DataCorp</td>
+<td class="p-4 text-secondary">Basic</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-danger/10 px-3 py-1 text-sm font-medium text-danger">
+<span class="h-2 w-2 rounded-full bg-danger"></span>
+                                            Inactive
+                                        </span>
+</td>
+<td class="p-4 text-secondary">New York, NY</td>
+<td class="p-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Edit</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Details</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-danger/50 text-sm font-medium text-danger hover:bg-danger/10">Delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+<td class="p-4 w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4 font-medium text-gray-900 dark:text-white">Cloud Solutions</td>
+<td class="p-4 text-secondary">Enterprise</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-success/10 px-3 py-1 text-sm font-medium text-success">
+<span class="h-2 w-2 rounded-full bg-success"></span>
+                                            Active
+                                        </span>
+</td>
+<td class="p-4 text-secondary">Austin, TX</td>
+<td class="p-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Edit</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Details</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-danger/50 text-sm font-medium text-danger hover:bg-danger/10">Delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+<td class="p-4 w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4 font-medium text-gray-900 dark:text-white">QuantumLeap</td>
+<td class="p-4 text-secondary">Trial</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-warning/10 px-3 py-1 text-sm font-medium text-warning">
+<span class="h-2 w-2 rounded-full bg-warning"></span>
+                                            Trial
+                                        </span>
+</td>
+<td class="p-4 text-secondary">Boston, MA</td>
+<td class="p-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Edit</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Details</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-danger/50 text-sm font-medium text-danger hover:bg-danger/10">Delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+<td class="p-4 w-12"><input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4 font-medium text-gray-900 dark:text-white">NextGen AI</td>
+<td class="p-4 text-secondary">Premium</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-success/10 px-3 py-1 text-sm font-medium text-success">
+<span class="h-2 w-2 rounded-full bg-success"></span>
+                                            Active
+                                        </span>
+</td>
+<td class="p-4 text-secondary">Seattle, WA</td>
+<td class="p-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Edit</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Details</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</button>
+<button class="flex items-center justify-center h-8 px-3 rounded-md border border-danger/50 text-sm font-medium text-danger hover:bg-danger/10">Delete</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex justify-between items-center mt-6">
+<p class="text-sm text-secondary">Showing 1 to 5 of 20 results</p>
+<div class="flex items-center gap-2">
+<button class="h-8 w-8 flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md bg-primary text-white text-sm">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">3</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">...</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">8</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<aside class="w-80 border-l border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-background-dark">
+<h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Filters</h3>
+<div class="space-y-6">
+<div>
+<h4 class="font-medium mb-2 text-sm text-gray-600 dark:text-gray-300">Subscription Plan</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" type="checkbox"/>
+<span>Premium</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" type="checkbox"/>
+<span>Enterprise</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" type="checkbox"/>
+<span>Basic</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" type="checkbox"/>
+<span>Trial</span>
+</label>
+</div>
+</div>
+<div>
+<h4 class="font-medium mb-2 text-sm text-gray-600 dark:text-gray-300">Status</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" name="status" type="radio"/>
+<span>All</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" name="status" type="radio"/>
+<span>Active</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" name="status" type="radio"/>
+<span>Inactive</span>
+</label>
+<label class="flex items-center gap-2 text-sm">
+<input class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary focus:ring-primary" name="status" type="radio"/>
+<span>Trial</span>
+</label>
+</div>
+</div>
+<div>
+<h4 class="font-medium mb-2 text-sm text-gray-600 dark:text-gray-300">Location</h4>
+<select class="form-select w-full rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent">
+<option>All Locations</option>
+<option>San Francisco, CA</option>
+<option>New York, NY</option>
+<option>Austin, TX</option>
+<option>Boston, MA</option>
+<option>Seattle, WA</option>
+</select>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Subscription Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#11bed4",
+            "background-light": "#f6f8f8",
+            "background-dark": "#102022",
+            "text-light": "#0d1a1b",
+            "text-dark": "#f6f8f8",
+            "subtext-light": "#4c919a",
+            "subtext-dark": "#a3b3b4",
+            "border-light": "#cfe5e7",
+            "border-dark": "#2a3c3e",
+            "success": "#7ED321",
+            "warning": "#F5A623",
+            "danger": "#D0021B",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex h-full grow flex-row">
+<!-- Side Navbar -->
+<aside class="flex-shrink-0 w-64 bg-white dark:bg-[#1a2e31] p-4 flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="John Doe's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKiy0CXLqgWw5ByEVcS1KHHV4fbCKwrCu0hbLS95wQYk8TvYJ0InMC6TZiCMjvIsjfTGisSpHbHuTYnptwWNR2YBryAMuhlSLytTaQ5oFYkowYGS6h0z39w9lFvwT6VPgMGmqpXeuW3wxKFezsUEHd7py8H7jYfUKK8n9xipiYge_eFjNGD0GZwRTkIFDIIaF-bhtlObPszlD0MwKgp1YbQIFcEyoRo7GaE81qJ1uSRYTOj3rJPo400IYtSCIo-k7bD4CNO3wPZmY");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light dark:text-text-dark text-base font-medium leading-normal">John Doe</h1>
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Property Manager</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">groups</span>
+<p class="text-sm font-medium leading-normal">Tenants</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">apartment</span>
+<p class="text-sm font-medium leading-normal">Properties</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">credit_card</span>
+<p class="text-sm font-medium leading-normal">Payments</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Add New Property</span>
+</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">help_outline</span>
+<p class="text-sm font-medium leading-normal">Help</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8">
+<div class="max-w-4xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6">
+<a class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal" href="#">Dashboard</a>
+<span class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal">/</span>
+<a class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal" href="#">Tenants</a>
+<span class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal">/</span>
+<a class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal" href="#">Jane Smith</a>
+<span class="text-subtext-light dark:text-subtext-dark text-sm font-medium leading-normal">/</span>
+<span class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Subscription</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<div class="flex min-w-72 flex-col gap-1">
+<h1 class="text-3xl font-black leading-tight tracking-tight text-text-light dark:text-text-dark">Subscription Details for Jane Smith</h1>
+<p class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-normal">Manage and view the details of the tenant's subscription plan.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/30 text-primary dark:text-primary text-sm font-bold leading-normal">
+<span class="material-symbols-outlined">edit</span>
+<span>Edit</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-danger text-white text-sm font-bold leading-normal">
+<span class="material-symbols-outlined">cancel</span>
+<span>Cancel</span>
+</button>
+</div>
+</div>
+<!-- Subscription Details Card -->
+<div class="bg-white dark:bg-[#1a2e31] rounded-xl p-6 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<!-- Tenant Name -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Tenant Name</p>
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Jane Smith</p>
+</div>
+<!-- Plan -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Plan</p>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark px-3 py-2 text-base font-medium text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary">
+<option>Standard</option>
+<option selected="">Premium</option>
+<option>Basic</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-subtext-light dark:text-subtext-dark">expand_more</span>
+</div>
+</div>
+<!-- Start Date -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Start Date</p>
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">01/01/2024</p>
+</div>
+<!-- End Date -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">End Date</p>
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">31/12/2024</p>
+</div>
+<!-- Status -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Status</p>
+<div class="flex items-center">
+<span class="px-2 py-1 text-xs font-bold leading-none text-white rounded-full bg-success">Active</span>
+</div>
+</div>
+<!-- Cost -->
+<div class="flex flex-col gap-1">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Cost</p>
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">$150/month</p>
+</div>
+<!-- Payment Status -->
+<div class="flex flex-col gap-1 md:col-span-2">
+<p class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal">Payment Status</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Paid up to 01/07/2024</p>
+</div>
+</div>
+<!-- Accordion for Features -->
+<div class="md:col-span-2 mt-4">
+<details class="flex flex-col rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark group" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 p-3">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Plan Features</p>
+<span class="material-symbols-outlined text-text-light dark:text-text-dark group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-3 pt-0">
+<ul class="text-subtext-light dark:text-subtext-dark text-sm font-normal leading-normal list-disc list-inside space-y-1">
+<li>24/7 maintenance support</li>
+<li>Online rent payment portal</li>
+<li>Access to community amenities</li>
+<li>Dedicated property manager</li>
+<li>Quarterly property inspections</li>
+</ul>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

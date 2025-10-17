@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Permissions</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11bed4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102022",
+                        "foreground-light": "#111718",
+                        "foreground-dark": "#f0f4f4",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2c2e",
+                        "border-light": "#e5e9ea",
+                        "border-dark": "#2a3c3e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold">Role Manager</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a aria-current="page" class="text-sm font-medium text-primary" href="#">Roles</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Users</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFI78DmkJCaC4NhVa43IFa45820j9B8mFjFasInBD2XNgI6rRK3014qg1ITE73TTFllWc0-m8vn3P70FTFgjpT0sD5ImmHiKfe77kaPaJQ2rp0LvAFyM78o3J2mcg6zII9C5IZZIE9XtYDVr_I3MzkdLAc2Ku7KeghNwRef0DGM5IvvVCTVipkeqP6gbODkYN94qHjTwodzSI9b75TcnBt7P7g0wCxlYkxhtFklUDxycf2mJ2a5xiCfglRqQYt4gyPAnE4_dwn88_Q')"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h2 class="text-3xl md:text-4xl font-bold tracking-tight">Manage Permissions</h2>
+<p class="mt-2 text-lg text-foreground-light/70 dark:text-foreground-dark/70">
+                        Configure access for the <span class="font-semibold text-primary">Editor</span> role.
+                    </p>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-sm border border-border-light dark:border-border-dark">
+<div class="p-6">
+<h3 class="text-lg font-semibold mb-4">Permissions</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4">
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Create Articles</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Edit Articles</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Delete Articles</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Publish Articles</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">View Articles</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Create Categories</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Edit Categories</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Delete Categories</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">View Categories</span>
+</label>
+<label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors cursor-pointer">
+<input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark text-primary focus:ring-primary/50 focus:ring-offset-card-light dark:focus:ring-offset-card-dark" type="checkbox"/>
+<span class="text-sm font-medium">Manage Users</span>
+</label>
+</div>
+</div>
+<div class="px-6 py-4 bg-background-light dark:bg-background-dark/50 border-t border-border-light dark:border-border-dark flex justify-end rounded-b-lg">
+<button class="px-6 py-2 rounded-lg bg-primary text-background-dark font-bold text-sm shadow-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-card-light dark:focus:ring-offset-card-dark transition-all">
+                            Save Changes
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

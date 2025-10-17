@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compose New Message</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#11bcd4", "background-light": "#f6f8f8", "background-dark": "#102022", "text-light": "#333333", "text-dark": "#f0f0f0", accent: "#7ED321"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input {
+            background-color: var(--tw-bg-background-light);
+            color: var(--tw-text-light);
+            border-color: #e5e7eb;
+        }
+        .dark .form-input {
+            background-color: var(--tw-bg-background-dark);
+            color: var(--tw-text-dark);
+            border-color: #374151;
+        }
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+        .dark .form-input::placeholder {
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-10 px-4 sm:px-6 lg:px-8">
+<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<p class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Compose New Message</p>
+</div>
+<div class="mt-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+<label class="flex flex-col flex-1">
+<p class="text-base font-medium leading-normal pb-2">User Type</p>
+<select class="form-select form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 p-[15px] text-base font-normal leading-normal">
+<option>Select user type</option>
+<option value="tenant">Tenant</option>
+<option value="contractor">Contractor</option>
+<option value="staff">Staff</option>
+</select>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-base font-medium leading-normal pb-2">Message Type</p>
+<select class="form-select form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 p-[15px] text-base font-normal leading-normal">
+<option>Select message type</option>
+<option value="technical-issue">Technical Issue</option>
+<option value="complaint">Complaint</option>
+<option value="general-inquiry">General Inquiry</option>
+<option value="rent-reminder">Rent Reminder</option>
+</select>
+</label>
+</div>
+<div class="px-4">
+<label class="flex flex-col flex-1">
+<p class="text-base font-medium leading-normal pb-2">Email</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 placeholder:text-gray-400 dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal" placeholder="Enter recipient's email" type="email" value=""/>
+</label>
+</div>
+<div class="px-4">
+<label class="flex flex-col flex-1">
+<p class="text-base font-medium leading-normal pb-2">Subject</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-14 placeholder:text-gray-400 dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal" placeholder="Enter subject" value=""/>
+</label>
+</div>
+<div class="px-4">
+<label class="flex flex-col flex-1">
+<p class="text-base font-medium leading-normal pb-2">Content</p>
+<div class="relative">
+<textarea class="form-textarea form-input flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark min-h-48 placeholder:text-gray-400 dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal" id="message-content" maxlength="1000" placeholder="Enter your message"></textarea>
+<p class="absolute bottom-3 right-3 text-sm text-gray-500 dark:text-gray-400" id="char-counter">0 / 1000</p>
+</div>
+</label>
+</div>
+<div class="flex justify-start px-4 pt-4">
+<div class="flex flex-1 gap-3 flex-wrap justify-start">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity">
+<span class="truncate">Send</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+<span class="truncate">Cancel</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        const messageContent = document.getElementById('message-content');
+        const charCounter = document.getElementById('char-counter');
+        const maxLength = messageContent.getAttribute('maxlength');
+        messageContent.addEventListener('input', () => {
+            const currentLength = messageContent.value.length;
+            charCounter.textContent = `${currentLength} / ${maxLength}`;
+        });
+    </script>
+</body></html>
