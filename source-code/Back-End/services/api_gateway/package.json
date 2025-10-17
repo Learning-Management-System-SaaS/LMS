@@ -5,7 +5,7 @@
   "author": "Musab Samani",
   "license": "ISC",
   "prisma": {
-    "schema": "src/data/prisma/schema"
+    "schema": "src/data/prisma/schema.prisma"
   },
   "scripts": {
     "build": "tsc",
