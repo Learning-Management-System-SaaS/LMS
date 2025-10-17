@@ -8,13 +8,14 @@ interface CreateTenantFormProps {
   onCancel: () => void;
 }
 
-const CreateTenantForm: React.FC<CreateTenantFormProps> = ({ onSubmit, onCancel }) => {
+const TenantForm: React.FC = () => {
   const [tenantName, setTenantName] = useState('');
   const [subscriptionType, setSubscriptionType] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name: tenantName, subscriptionType });
+    console.log('submitted')
+    // onSubmit({ name: tenantName, subscriptionType });
   };
 
   return (
@@ -71,4 +72,4 @@ const CreateTenantForm: React.FC<CreateTenantFormProps> = ({ onSubmit, onCancel 
   );
 };
 
-export default CreateTenantForm;
+export default TenantForm;

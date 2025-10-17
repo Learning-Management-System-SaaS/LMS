@@ -79,9 +79,9 @@ export interface Tenant {
 export const mockTenants: Tenant[] = [
   { id: 'T001', name: 'Maplewood High', subscriptionType: 'Premium', startDate: '2023-09-01', endDate: '2024-08-31', status: 'Active' },
   { id: 'T002', name: 'Oakridge University', subscriptionType: 'Standard', startDate: '2024-01-15', endDate: '2025-01-14', status: 'Active' },
-  { id: 'T003', name: 'Pinecrest Academy', subscriptionType: 'Basic', startDate: '2024-03-01', endDate: '2025-02-28', status: 'Active' },
+  { id: 'T003', name: 'Pinecrest Academy', subscriptionType: 'Basic', startDate: '2024-03-01', endDate: '2025-02-28', status: 'Inactive' },
   { id: 'T004', name: 'Riverdale College', subscriptionType: 'Premium', startDate: '2023-08-01', endDate: '2024-07-31', status: 'Active' },
-  { id: 'T005', name: 'Willowbrook School', subscriptionType: 'Standard', startDate: '2024-05-20', endDate: '2025-05-19', status: 'Active' },
+  { id: 'T005', name: 'Willowbrook School', subscriptionType: 'Standard', startDate: '2024-05-20', endDate: '2025-05-19', status: 'Inactive' },
 ];
 
 export const subscriptionTypes = ['Basic', 'Standard', 'Premium'];

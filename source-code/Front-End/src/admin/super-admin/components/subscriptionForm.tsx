@@ -3,12 +3,9 @@
 import React, { useState } from 'react';
 import { subscriptionPlans,subscriptionUsers } from '../../../data/mockData';
 
-interface AddSubscriptionFormProps {
-  onBack: () => void;
-  onSubmit: (formData: any) => void;
-}
 
-const AddSubscriptionForm: React.FC<AddSubscriptionFormProps> = ({ onBack, onSubmit }) => {
+
+const SubscriptionForm: React.FC = () => {
   const [formData, setFormData] = useState({
     plan: '',
     user: '',
@@ -25,7 +22,7 @@ const AddSubscriptionForm: React.FC<AddSubscriptionFormProps> = ({ onBack, onSub
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    console.log('submitted')
   };
 
   return (
@@ -142,7 +139,7 @@ const AddSubscriptionForm: React.FC<AddSubscriptionFormProps> = ({ onBack, onSub
         </div>
 
         <div className="flex justify-end gap-3">
-          <button type="button" className="btn btn-ghost" onClick={onBack}>
+          <button type="button" className="btn btn-ghost" >
             Cancel
           </button>
           <button type="submit" className="btn bg-sky-500 hover:bg-sky-600 border-0 text-white">
@@ -154,4 +151,4 @@ const AddSubscriptionForm: React.FC<AddSubscriptionFormProps> = ({ onBack, onSub
   );
 };
 
-export default AddSubscriptionForm;
+export default SubscriptionForm;

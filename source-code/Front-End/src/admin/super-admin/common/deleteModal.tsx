@@ -1,15 +1,15 @@
-// src/components/DeleteSubscriptionModal.tsx
+// src/components/DeleteModal.tsx
 
 import React, { useRef, useEffect } from 'react';
 
-interface DeleteSubscriptionModalProps {
+interface DeleteModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: (subscriptionId: string) => void;
   subscriptionToDelete: string | null;
 }
 
-const DeleteSubscriptionModal: React.FC<DeleteSubscriptionModalProps> = ({
+const DeleteModal: React.FC<DeleteModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
@@ -70,4 +70,4 @@ const DeleteSubscriptionModal: React.FC<DeleteSubscriptionModalProps> = ({
   );
 };
 
-export default DeleteSubscriptionModal;
+export default DeleteModal;

@@ -3,21 +3,19 @@
 import React, { useState } from 'react';
 import { mockTenants } from '../../../data/mockData'; // Import tenant data for the dropdown
 
-interface CreateUserFormProps {
-  onSubmit: (userData: { tenantId: string; firstName: string; lastName: string; email: string; password: string }) => void;
-  onCancel: () => void; // Optional: If you want a cancel button
-}
 
-const CreateUserForm: React.FC<CreateUserFormProps> = ({ onSubmit, onCancel }) => {
+
+const UserForm: React.FC = () => {
   const [tenantId, setTenantId] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const onsubmit =(prop:{})=>{console.log(prop)}
+  const oncancel =()=>{}
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ tenantId, firstName, lastName, email, password });
+    onsubmit({ tenantId, firstName, lastName, email, password });
     // Optionally reset form fields after submission
     setTenantId('');
     setFirstName('');
@@ -129,4 +127,4 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({ onSubmit, onCancel }) =
   );
 };
 
-export default CreateUserForm;
+export default UserForm;
