@@ -12,7 +12,10 @@ export const authMiddleware = async (req: customRequest, res: Response, next: Ne
 
     const token = extractTokenFromHeader(req);
 
-    const decodedToken = verifyToken(token);
+    const decodedToken = verifyToken({
+      token,
+      secret: process.env.JWT_SECRET,
+    });
 
     // Determine where the tenantId should come from based on the user role
     const tenantId = decodedToken.userRole === ROLES.SAAS_OWNER ? req.body.tenantId : decodedToken.tenantId;
@@ -31,8 +34,8 @@ export const authMiddleware = async (req: customRequest, res: Response, next: Ne
     return next(); // Pass control to the next middleware/handler
   } catch (error) {
     if (error instanceof HttpError) {
-      return res.status(error.statusCode || 401).json(createResponseObject({ error: { message: "Unauthorized", details: error.message } }));
+      return res.status(error.statusCode || 401).json(({ error: { message: "Unauthorized", details: error.message } }));
     }
-    return res.status(401).json(createResponseObject({ error: { message: "Unauthorized" } }));
+    return res.status(401).json(({ error: { message: "Unauthorized" } }));
   }
 };

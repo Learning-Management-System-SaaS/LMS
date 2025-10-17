@@ -1,10 +1,19 @@
-import { Division } from "@prisma/client";
+//import { Division } from "@prisma/client";
 import { makeNullFieldsOptional } from "../utils/typesUtilities";
 import { auditingFields } from "../types";
 
 //! When updating this file, and these interfaces
 //! make sure validation schemas in `validations/divisionValidationSchemas.ts` are updated
-
+export interface Division {
+    name: string;
+    id: number;
+    tenantId: number;
+    parentId: number | null;
+    description: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    version: number;
+}
 /**
  * Base interface for the Division entity.
  *
@@ -65,6 +74,7 @@ export interface createDivisionRequestDTO extends createDivisionData {}
  * It extends `divisionBaseModel` but marks all fields as optional except `id` and `version` fields as required.
  */
 export interface updateDivisionDTO extends Partial<divisionDataWithoutAudit> {
+  updatedAt: any;
   id: number;
   version: number;
   tenantId: number;

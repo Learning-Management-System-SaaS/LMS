@@ -28,8 +28,8 @@ export const validateTenantIdMatch = (req: customRequest, res: Response, next: N
     return next(); // Proceed to the next middleware or controller
   } catch (error) {
     if (error instanceof HttpError) {
-      return res.status(error.statusCode || 500).json(createResponseObject({ error: { message: error.message, details: error.details } }));
+      return res.status(error.statusCode || 500).json(({ error: { message: error.message, details: error.details } }));
     }
-    return res.status(500).json(createResponseObject({ error: { message: "error verifying tenantId matching" } }));
+    return res.status(500).json(({ error: { message: "error verifying tenantId matching" } }));
   }
 };

@@ -14,5 +14,5 @@ export type subscriptionFieldsUnion = "subscriptionType" | "subscriptionStatus" 
  * Object type representing only subscription-related fields from `User` and mark them as optional
  */
 export type subscriptionFieldsOptional = {
-  [P in subscriptionFieldsUnion]?: User[P];
+  [P in subscriptionFieldsUnion]?: User;
 };

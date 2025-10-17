@@ -19,10 +19,10 @@ dotenv.config();
 
 export const handleUndefinedEndpoint = (req: Request, res: Response, next: NextFunction): Response => {
   return res.status(404).json(
-    createResponseObject({
+    ({
       error: {
-        message: "API endpoint not found",
-        details: `Path ${req.originalUrl} not found on service ${process.env.CURRENT_SERVICE_NAME}`,
+      message: "API endpoint not found",
+      details: `Path ${req.originalUrl} not found on service ${process.env.CURRENT_SERVICE_NAME}`,
       },
     })
   );

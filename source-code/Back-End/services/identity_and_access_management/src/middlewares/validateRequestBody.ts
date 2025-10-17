@@ -24,7 +24,7 @@ export function validateRequestBody(validationSchema: Joi.Schema) {
   return (req: Request, res: Response, next: NextFunction): Response | void => {
     // Check if the request body is empty
     if (Object.keys(req.body).length === 0) {
-      return res.status(400).json(createResponseObject({ error: { message: "Empty request body" } }));
+      return res.status(400).json(({ error: { message: "Empty request body" } }));
     }
 
     // Validate the request body against the schema
@@ -34,7 +34,7 @@ export function validateRequestBody(validationSchema: Joi.Schema) {
 
     if (error) {
       // If validation fails, return the error details to the client
-      return res.status(400).json(createResponseObject({ error: { message: "Validation error", details: joiValidationErrorToMessage(error) } }));
+      return res.status(400).json(({ error: { message: "Validation error", details: joiValidationErrorToMessage(error) } }));
     }
 
     // If validation succeeds, assign the validated value to the request body

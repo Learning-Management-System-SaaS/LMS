@@ -18,7 +18,7 @@ interface controllerError {
  */
 export const handleControllerError = <T>({ defaultErrorMessage, res, error }: controllerError): Response => {
   if (error instanceof HttpError) {
-    return res.status(error.statusCode || 500).json(createResponseObject<T>({ error: { message: defaultErrorMessage, details: error.message } }));
+    return res.status(error.statusCode || 500).json(<T>({ error: { message: defaultErrorMessage, details: error.message } }));
   }
-  return res.status(500).json(createResponseObject<T>({ error: { message: defaultErrorMessage, details: "Internal server error" } }));
+  return res.status(500).json(<T>({ error: { message: defaultErrorMessage, details: "Internal server error" } }));
 };
