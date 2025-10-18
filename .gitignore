@@ -4,7 +4,7 @@
 # prisma migrations
 migrations
 
-
+file1
 # Logs
 logs
 *.log

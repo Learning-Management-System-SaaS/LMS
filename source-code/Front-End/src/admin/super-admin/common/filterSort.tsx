@@ -1,3 +1,5 @@
+import { faFileExport } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 interface FilterSortProps {
   searchTerm: string | number | readonly string[] | undefined;
@@ -38,6 +40,9 @@ const FilterSort = ({ searchTerm, setSearchTerm }: FilterSortProps) => {
         {/* Filter and Sort Buttons (Icon only, text aligned) */}
         <div className="flex space-x-2 text-gray-500 font-medium">
           <div className="relative">
+            <button className="btn bg-gray-700 border-none shadow-none text-white hover:bg-gray-500 hover:text-gray-50">
+              <FontAwesomeIcon icon={faFileExport} />Export CSV
+            </button>
             <button
                 onClick={handleFilter}
              className="dropdown btn bg-transparent text-gray-600 border-0 shadow-none normal-case text-sm px-3 ">

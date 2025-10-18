@@ -139,3 +139,106 @@ export const mockUsers: User[] = [
     tenantName: 'Oakridge University',
   },
 ];
+
+export interface Message {
+  id: number;
+  tenantName: string;
+  address: string;
+  messageType: "Technical Issue" | "Complaint" | "Other";
+  lastMessage: string;
+  daysAgo: string;
+  avatar: string;
+}
+
+export const mockMessages: Message[] = [
+  {
+    id: 1,
+    tenantName: "Jane Smith",
+    address: "123 Main St",
+    messageType: "Technical Issue",
+    lastMessage: "Hi John, my kitchen faucet is leaking...",
+    daysAgo: "2 days ago",
+    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+  },
+  {
+    id: 2,
+    tenantName: "Michael Brown",
+    address: "456 Oak Ave",
+    messageType: "Complaint",
+    lastMessage: "The neighbors are being too loud again...",
+    daysAgo: "5 days ago",
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg",
+  },
+  {
+    id: 3,
+    tenantName: "Emily White",
+    address: "789 Pine Rd",
+    messageType: "Other",
+    lastMessage: "Just a heads up, I'll be out of town...",
+    daysAgo: "1 week ago",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+  },
+  {
+    id: 4,
+    tenantName: "David Green",
+    address: "22 Elm St",
+    messageType: "Complaint",
+    lastMessage: "The heating isn’t working properly.",
+    daysAgo: "3 days ago",
+    avatar: "https://randomuser.me/api/portraits/men/4.jpg",
+  },
+  {
+    id: 5,
+    tenantName: "Sophia Clark",
+    address: "77 Maple Ave",
+    messageType: "Technical Issue",
+    lastMessage: "Wi-Fi is down in my unit again.",
+    daysAgo: "4 days ago",
+    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+  {
+    id: 6,
+    tenantName: "Ethan Wilson",
+    address: "5 Lake Rd",
+    messageType: "Other",
+    lastMessage: "Can you confirm my payment was received?",
+    daysAgo: "6 days ago",
+    avatar: "https://randomuser.me/api/portraits/men/6.jpg",
+  },
+  {
+    id: 7,
+    tenantName: "Olivia Johnson",
+    address: "15 Birch Ln",
+    messageType: "Complaint",
+    lastMessage: "The trash hasn’t been collected.",
+    daysAgo: "2 weeks ago",
+    avatar: "https://randomuser.me/api/portraits/women/7.jpg",
+  },
+  {
+    id: 8,
+    tenantName: "Daniel Lee",
+    address: "63 Willow St",
+    messageType: "Technical Issue",
+    lastMessage: "Air conditioner making loud noise.",
+    daysAgo: "1 day ago",
+    avatar: "https://randomuser.me/api/portraits/men/8.jpg",
+  },
+  {
+    id: 9,
+    tenantName: "Emma Davis",
+    address: "92 Cedar Rd",
+    messageType: "Other",
+    lastMessage: "Could I schedule a maintenance check?",
+    daysAgo: "1 week ago",
+    avatar: "https://randomuser.me/api/portraits/women/9.jpg",
+  },
+  {
+    id: 10,
+    tenantName: "Lucas Miller",
+    address: "101 Pine Ave",
+    messageType: "Complaint",
+    lastMessage: "There’s a leak under my sink again.",
+    daysAgo: "3 days ago",
+    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
+  },
+];

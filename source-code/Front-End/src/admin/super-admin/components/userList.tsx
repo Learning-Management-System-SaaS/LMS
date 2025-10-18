@@ -1,11 +1,12 @@
 // src/pages/TenantList.tsx
+import { useNavigate } from "react-router-dom";
 import { mockUsers } from "../../../data/mockData";
 import Table from "../common/table";
 
 
 
 const UserList: React.FC = () => {
- 
+ const navigate = useNavigate()
   return(
     <Table 
       title="Users"
@@ -17,6 +18,7 @@ const UserList: React.FC = () => {
         { key: "tenantName", label: "Tenant" },
       ]}
       action={true}
+      onRowClick={(item)=>navigate(`userDetails/${item.id}`, { state: { user: item.id} })}
       searchFn={(item, term) =>
           item.id.toLowerCase().includes(term.toLowerCase()) ||
           item.name.toLowerCase().includes(term.toLowerCase())

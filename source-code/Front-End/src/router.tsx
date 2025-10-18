@@ -20,6 +20,10 @@ import RolesForm from "./admin/super-admin/components/rolesForm";
 import SubscriptionsList from "./admin/super-admin/components/subscrioptionsList";
 import SubscriptionForm from "./admin/super-admin/components/subscriptionForm";
 import PermissionsList from "./admin/super-admin/components/permissionList";
+import MessagesList from "./admin/super-admin/components/messagesList";
+import MessageForm from "./admin/super-admin/components/messageForm";
+import UserDetails from "./admin/super-admin/components/userDetails";
+import TenantDetails from "./admin/super-admin/components/tenantDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +52,10 @@ export const router = createBrowserRouter([
           {
             path:"newTenant",
             element:<SubscriptionForm />
+          },
+          {
+            path:"subscriptionDetails/:id",
+            element:<UserDetails/>
           }
         ]
       },
@@ -62,6 +70,10 @@ export const router = createBrowserRouter([
           {
             path:"newUser",
             element:<UserForm/>
+          },
+          {
+            path:"userDetails/:id",
+            element:<UserDetails/>
           }
         ]
 
@@ -77,6 +89,10 @@ export const router = createBrowserRouter([
           {
             path:"newTenant",
             element:<TenantForm />
+          },
+          {
+            path:"tenantDetails/:id",
+            element:<TenantDetails/>
           }
         ]
       },
@@ -111,6 +127,16 @@ export const router = createBrowserRouter([
       {
         path: "messages",
         element: <Messages />,
+        children:[
+          {
+            index: true,
+            element:<MessagesList />
+          },
+          {
+            path:"newMessage",
+            element:<MessageForm />
+          }
+        ]
       },
       {
         path: "support",

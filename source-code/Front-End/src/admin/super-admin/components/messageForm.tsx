@@ -8,6 +8,10 @@ const roleOptions = [
   { label: "Manager", value: "manager" },
   { label: "Tenant", value: "tenant" },
 ];
+const messageType = [
+  { label: "Technical Issue", value: "technicalIssue" },
+  { label: "Support", value: "support" },
+];
 
 const initialValues = {
   tenantId: "",
@@ -19,38 +23,25 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  tenantId: Yup.string().required("Tenant is required"),
-  role: Yup.string().required("Role is required"),
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
+  userType: Yup.string().required("User Type is required"),
+  messageType: Yup.string().required("Message Type is required"),
+  subject: Yup.string().required("Subject is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().min(6, "Min 6 characters").required("Password is required"),
+  
 });
 
 const fields: FormField[] = [
   {
-    name: "tenantId",
-    label: "Tenant",
+    name: "messageType",
+    label: "Message Type",
     type: "select",
-    options: mockTenants.map((t) => ({ label: t.name, value: t.id })),
+    options: messageType
   },
   {
-    name: "role",
-    label: "Role",
+    name: "userType",
+    label: "User Type",
     type: "select",
     options: roleOptions,
-  },
-  {
-    name: "firstName",
-    label: "First Name",
-    type: "text",
-    placeholder: "John",
-  },
-  {
-    name: "lastName",
-    label: "Last Name",
-    type: "text",
-    placeholder: "Doe",
   },
   {
     name: "email",
@@ -60,15 +51,20 @@ const fields: FormField[] = [
     grid: "col-span-2",
   },
   {
-    name: "password",
-    label: "Password",
-    type: "password",
-    placeholder: "••••••••",
+    name: "subject",
+    label: "Subject",
+    type: "text",
+    grid: "col-span-2",
+  },
+  {
+    name: "content",
+    label: "Content",
+    type: "textarea",
     grid: "col-span-2",
   },
 ];
 
-const CreateUserForm: React.FC = () => {
+const MessageForm: React.FC = () => {
   const handleSubmit = async (values: typeof initialValues) => {
     console.log("Form Submitted:", values);
   };
@@ -86,4 +82,4 @@ const CreateUserForm: React.FC = () => {
   );
 };
 
-export default CreateUserForm;
+export default MessageForm;

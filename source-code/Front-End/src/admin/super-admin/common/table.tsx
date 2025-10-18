@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FilterSort from "./filterSort";
+import { Message } from "../../../data/mockData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
 interface TableColumn<T> {
   key: keyof T;
@@ -14,6 +17,7 @@ interface TableProps<T> {
   title?: string;
   description?: string;
   action?: boolean;
+  readBtn?: boolean;
   onRowClick?: (item: T) => void;
   searchFn: (Item: T, term: String) => boolean;
 }
@@ -26,6 +30,7 @@ const Table = <T extends object>({
   action = false,
   onRowClick,
   searchFn,
+  readBtn,
 }: TableProps<T>) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,6 +66,10 @@ const Table = <T extends object>({
         return "bg-red-100 text-red-600 border border-red-200"; // Light Red/Pink look
       case "Inactive":
         return "bg-yellow-100 text-yellow-600 border border-yellow-200"; // Light Red/Pink look
+      case "Technical Issue":
+        return "bg-yellow-100 text-yellow-600 border border-yellow-200";
+      case "Complaint":
+        return "bg-red-100 text-red-600 border border-red-200";
       default:
         return "bg-gray-100 text-gray-600 border border-gray-200";
     }
@@ -124,10 +133,10 @@ const Table = <T extends object>({
                   >
                     {columns.map((col) => (
                       <td key={String(col.key)}>
-                        {col.key === "status" ? (
+                        {col.key === "status" || col.key === "messageType" ? (
                           <div
                             className={` ${
-                              col.key === "status"
+                              col.key === "status" || col.key === "messageType"
                                 ? "badge text-xs font-bold rounded-full " +
                                   getStatusBadgeClass(String(item[col.key]))
                                 : "text-gray-700"
@@ -139,6 +148,12 @@ const Table = <T extends object>({
                           </div>
                         ) : col.render ? (
                           col.render(item)
+                        ) : col.key === "avatar" ? (
+                          <div className="avatar">
+                            <div className="w-10 h-10 rounded-full">
+                              <img src={String(item[col.key])} alt={col.key} />
+                            </div>
+                          </div>
                         ) : (
                           String(item[col.key])
                         )}
@@ -147,25 +162,32 @@ const Table = <T extends object>({
                     <td className="text-center w-1/6">
                       <div className="flex  items-center space-x-2">
                         {/* Edit Button (Light blue icon/hover) */}
-                        <button
-                          onClick={() => console.log("updated")}
-                          className=" p-1 text-blue-500"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                        {readBtn ? (
+                          <button onClick={() => console.log("updated")}
+                          className=" text-info">
+                            <FontAwesomeIcon icon={faCommentDots} />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => console.log("updated")}
+                            className=" p-1 text-blue-500"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                            />
-                          </svg>
-                        </button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                              />
+                            </svg>
+                          </button>
+                        )}
                         {/* Delete Button (Red icon/hover) */}
                         <button
                           className=" p-1 text-red-500"

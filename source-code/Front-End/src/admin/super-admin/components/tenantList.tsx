@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Tenant, mockTenants } from "../../../data/mockData";
 import Table from "../common/table";
 import FilterSort from "../common/filterSort";
+import { useNavigate } from "react-router-dom";
 
 interface TenantListProps {
   onNewTenant?: () => void;
@@ -11,8 +12,7 @@ interface TenantListProps {
 }
 
 const TenantList: React.FC<TenantListProps> = () => {
-  const [tenants, setTenants] = useState<Tenant[]>(mockTenants);
-
+  const navigate = useNavigate()
   return (
     <div>
       <Table
@@ -27,6 +27,7 @@ const TenantList: React.FC<TenantListProps> = () => {
         ]}
         action={true}
         title="Tenants"
+        onRowClick={(item)=>navigate(`tenantDetails/${item.id}`,{state:{tenant:item.id}})}
         searchFn={(item, term) =>
           item.id.toLowerCase().includes(term.toLowerCase()) ||
           item.name.toLowerCase().includes(term.toLowerCase())
