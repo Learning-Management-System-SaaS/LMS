@@ -32,6 +32,6 @@ const router: Router = Router();
  * @returns {Promise<Response>} 500 - An error occurred while logging in the user.
  */
 router.post("/login", validateRequestBody(loginUserSchema), loginUser);
-// router.post("/", [validateRequestBody(loginUserSchema), validateTenantIdMatch, isAuthorized({ allowedPermissions: [PERMISSIONS.CREATE_USER] })], createUser);
+router.post("/", [validateRequestBody(loginUserSchema), validateTenantIdMatch, isAuthorized({ allowedPermissions: [PERMISSIONS.CREATE_USER] })], createUser);
 
 export { router };

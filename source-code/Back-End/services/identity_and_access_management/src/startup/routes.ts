@@ -24,6 +24,7 @@ export const routes = (app: Application) => {
   // Middleware to parse cookies
   app.use(cookieParser());
 
+  
   // Enable CORS for all routes
   app.use(cors({ origin: apiUrls.baseUrl, credentials: true }));
 

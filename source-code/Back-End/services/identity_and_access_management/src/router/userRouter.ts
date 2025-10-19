@@ -9,6 +9,8 @@ import { isAuthorized } from "../middlewares/isAuthorized";
 import { PERMISSIONS } from "../config/permissions";
 import { ROLES } from "../config/roles";
 import { authMiddleware } from "../middlewares/authMiddleware";
+import { verifyToken } from "../middlewares/verifyToken";
+
 
 /**
  * Express router to handle user-related routes.
@@ -24,6 +26,8 @@ import { authMiddleware } from "../middlewares/authMiddleware";
  * @type {Router}
  */
 const router: Router = Router();
+
+
 
 // apply auth middleware
 router.use(authMiddleware);
@@ -116,5 +120,18 @@ router.put("/:id", [IsValidIdParams, validateReqParamsIdMatch, validateRequestBo
  * @returns {Promise<Response>} 500 - An error occurred while deleting the user.
  */
 router.delete("/:id", [IsValidIdParams, isAuthorized({ allowedPermissions: [PERMISSIONS.DELETE_USER] })], deleteUser);
+
+
+// test route with token verification only
+router.get("/me", verifyToken, (req, res) => {
+  res.json({
+    message: "Token verified successfully!",
+  });
+});
+
+// Protect routes with token
+router.get("/", verifyToken, isAuthorized({ allowedPermissions: [PERMISSIONS.VIEW_USER] }), getAllUsers);
+
+
 
 export { router };
