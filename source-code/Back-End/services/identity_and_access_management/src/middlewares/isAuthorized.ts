@@ -26,7 +26,7 @@ export const isAuthorized = ({ allowedPermissions, allowedRoles }: isAuthorizedI
       (allowedPermissions && (!req.user?.permissions || !allowedPermissions.every((permission) => req.user?.permissions.includes(permission))))
     ) {
       return res.status(403).json(
-        createResponseObject({
+        ({
           error: {
             message: `Forbidden: User has not sufficient permissions to access this resource.`,
           },

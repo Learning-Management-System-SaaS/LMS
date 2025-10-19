@@ -25,7 +25,7 @@ interface deleteResponse<T> {
  * @property {string | Joi.ValidationErrorItem[]} [error.details] - Additional details about the error, which can be a simple string or an array of validation errors (e.g., from Joi validation).
  */
 export interface responseObjectInterface<T> {
-  data?: T | T[] | deleteResponse<T> | HealthCheckResponse | null;
+  data: T | T[] | deleteResponse<T> | HealthCheckResponse | null;
   error?: { message?: string; details?: string | string[] | Joi.ValidationErrorItem[] } | null;
 }
 

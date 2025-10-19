@@ -20,8 +20,8 @@ export const errorMiddleware = (err: Error, req: Request, res: Response): Respon
 
   winston.error({ message: err.message, stack: err.stack });
   if (err instanceof HttpError) {
-    return res.status(err?.statusCode || 500).json(createResponseObject({ error: { message: err.message || "Internal server error" } }));
+    return res.status(err?.statusCode || 500).json(({ error: { message: err.message || "Internal server error" } }));
   }
   // Respond with a 500 status code and error details
-  return res.status(500).json(createResponseObject({ error: { message: "Internal server error", details: err.message } }));
+  return res.status(500).json(({ error: { message: "Internal server error", details: err.message } }));
 };

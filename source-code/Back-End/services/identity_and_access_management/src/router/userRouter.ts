@@ -10,6 +10,7 @@ import { PERMISSIONS } from "../config/permissions";
 import { ROLES } from "../config/roles";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
+
 /**
  * Express router to handle user-related routes.
  *
@@ -24,6 +25,8 @@ import { authMiddleware } from "../middlewares/authMiddleware";
  * @type {Router}
  */
 const router: Router = Router();
+
+
 
 // apply auth middleware
 router.use(authMiddleware);
@@ -114,7 +117,5 @@ router.put("/:id", [IsValidIdParams, validateReqParamsIdMatch, validateRequestBo
  * @returns {Promise<Response>} 200 - A success message indicating the user was deleted.
  * @returns {Promise<Response>} 404 - User not found.
  * @returns {Promise<Response>} 500 - An error occurred while deleting the user.
- */
-router.delete("/:id", [IsValidIdParams, isAuthorized({ allowedPermissions: [PERMISSIONS.DELETE_USER] })], deleteUser);
-
-export { router };
+ */router.delete("/:id", [IsValidIdParams, isAuthorized({ allowedPermissions: [PERMISSIONS.DELETE_USER] })], deleteUser);
+ export { router };

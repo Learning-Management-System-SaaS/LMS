@@ -5,7 +5,7 @@ import { handleControllerError } from "../utils/handleContollerErrors";
 import { createResponseObject } from "../utils/createResponseObject";
 import { customRequest } from "../interfaces";
 import { getHashPassword, isValidPassword } from "../utils/verifyPassword";
-// import { generateToken } from "../utils/jwt";
+import { generateToken } from "../utils/jwt";
 import { HttpError } from "../errors/httpError";
 
 // Instantiate the user service
@@ -39,20 +39,20 @@ export const loginUser = async (req: customRequest, res: Response): Promise<Resp
         throw new HttpError({ message: "Internal server error", statusCode: 500 });
       }
     }
-    // const token = generateToken({ user: userWithoutPassword });
+      const token = generateToken({
+  user: userWithoutPassword,
+  secret: process.env.JWT_ACCESS_TOKEN_SECRET,
+});
     // Respond with the user data if successfully logged in
 
-    return (
-      res
-        .status(200)
-        // .clearCookie("refreshToken", "token here",{
-        //   httpOnly: true,
-        //   secure: process.env.NODE_ENV === "production" ? true : false, // Set to true in production with HTTPS
-        //   sameSite: "strict",
-        // })
-        // .setHeader("Authorization", `Bearer ${token}`)
-        .json(createResponseObject<userResponseDTO>({ data: userWithoutPassword }))
-    );
+   return res.status(200).json(
+  createResponseObject({
+    data: {
+      user: userWithoutPassword,
+      token,
+    },
+  })
+);
   } catch (error) {
     // Handle any errors that occur during the login of a user
     return handleControllerError({ res, error, defaultErrorMessage: "Failed to login user" });

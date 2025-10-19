@@ -18,7 +18,7 @@ const divisionService = new DivisionService();
 export const getAllDivision = async (req: customRequest, res: Response): Promise<Response> => {
   try {
     // Call the database service to get all divisions in the database
-    const divisions = await divisionService.getAllDivision();
+    const divisions = await divisionService.getAllDivition();
 
     // Respond with the divisions data if found
     return res.status(200).json(createResponseObject<divisionResponseDTO>({ data: divisions }));
@@ -43,7 +43,7 @@ export const getTenantDivisionHierarchy = async (req: customRequest, res: Respon
     const divisions = await divisionService.getTenantDivisionHierarchy(id);
 
     // Respond with the divisions data if found
-    return res.status(200).json(createResponseObject<divisionResponseDTO>({ data: divisions }));
+    return res.status(200).json({data:divisions});
   } catch (error) {
     // Handle any errors that occur during the retrieval of divisions
     return handleControllerError({ res, error, defaultErrorMessage: "Failed to retrieve tenant's divisions" });
@@ -65,7 +65,7 @@ export const getTenantDivisionList = async (req: customRequest, res: Response): 
     const divisions = await divisionService.getTenantDivisionList(id);
 
     // Respond with the divisions data if found
-    return res.status(200).json(createResponseObject<divisionResponseDTO[]>({ data: divisions }));
+    return res.status(200).json({data:divisions});
   } catch (error) {
     // Handle any errors that occur during the retrieval of divisions
     return handleControllerError({ res, error, defaultErrorMessage: "Failed to retrieve tenant's divisions" });
@@ -85,11 +85,11 @@ export const getDivisionById = async (req: customRequest, res: Response): Promis
     if (!tenantId) throw new HttpError({ message: "Tenant ID is missing in the request body", statusCode: 400 });
 
     // Extract division ID from request parameters
-    const divisionId = Number(req.params.id);
-    if (!divisionId) throw new HttpError({ message: "Division ID is missing in the request parameters", statusCode: 400 });
+    const DivisionId = Number(req.params.id);
+    if (!DivisionId) throw new HttpError({ message: "Division ID is missing in the request parameters", statusCode: 400 });
 
     // Call the database service to get the division by ID
-    const division = await divisionService.getDivisionById({ divisionId, tenantId });
+    const division = await divisionService.getDivisionById({ tenantId,DivisionId});
 
     // Respond with the division data if found
     return res.status(200).json(createResponseObject<divisionResponseDTO>({ data: division }));
@@ -134,7 +134,7 @@ export const updateDivision = async (req: customRequest, res: Response): Promise
     const updateData: updateDivisionDTO = req.body;
 
     // Call the database service to update the division
-    const updatedDivision = await divisionService.updateDivision(updateData);
+    const updatedDivision = await divisionService.updateDivision(updateData.id,updateData);
 
     // Respond with the updated division data
     return res.status(200).json(createResponseObject<divisionResponseDTO>({ data: updatedDivision }));
@@ -161,7 +161,7 @@ export const deleteDivision = async (req: customRequest, res: Response): Promise
     if (!divisionId) throw new HttpError({ message: "Division ID is missing in the request parameters", statusCode: 400 });
 
     // Call the database service to delete the division
-    const deletedDivision = await divisionService.deleteDivision({ divisionId, tenantId: req.user?.tenantId! });
+    const deletedDivision = await divisionService.deleteDivision( divisionId);
     return res.status(200).json(createResponseObject<divisionResponseDTO>({ data: { message: "Division deleted successfully", data: deletedDivision } }));
   } catch (error) {
     // Handle any errors that occur during the deletion of a division

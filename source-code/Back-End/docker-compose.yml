@@ -1,83 +1,111 @@
-version: "3.8"
 
+# Back-End/docker-compose.yml
+# (No top-level "version:" to avoid Compose V2 warning)
 services:
-  # API Gateway
-  api-gateway:
+  api_gateway:
     build:
-      context: ./service/api-gateway
-    container_name: api-gateway
+      context: ./services/api_gateway
     ports:
       - "${API_GATEWAY_PORT}:5000"
+    env_file:
+      - ./.env
+      - ./services/api_gateway/.env
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - API_GATEWAY_PORT=${API_GATEWAY_PORT}
-      - TENANT_SERVICE_URL=${TENANT_SERVICE_URL}
-      - USER_SERVICE_URL=${USER_SERVICE_URL}
-      - AUTHENTICATION_SERVICE_URL=${AUTHENTICATION_SERVICE_URL}
+      - TENANT_SERVICE_URL=http://tenant_and_organization_management:${TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE_PORT}
+      - IDENTITY_SERVICE_URL=http://identity_and_access_management:${IDENTITY_AND_ACCESS_MANAGEMENT_SERVICE_PORT}
+      - COMMUNICATION_SERVICE_URL=http://communication_and_notification:${COMMUNICATION_AND_NOTIFICATION_SERVICE_PORT}
+      - LEARNING_SERVICE_URL=http://learning_and_assessment_management:${LEARNING_AND_ASSESSMENT_MANAGEMENT_SERVICE_PORT}
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
-      - tenant-service
-      - user-service
-      - authentication-service
+      - tenant_and_organization_management
+      - identity_and_access_management
+      - communication_and_notification
+      - learning_and_assessment_management
     networks:
       - lms-network
 
-  # Authentication Service
-  authentication-service:
+  tenant_and_organization_management:
     build:
-      context: ./service/authentication-service
-    container_name: authentication-service
+      context: ./services/tenant_and_organization_management
     ports:
-      - "${AUTHENTICATION_SERVICE_PORT}:5003"
+      - "${TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE_PORT}:5001"
+    env_file:
+      - ./services/tenant_and_organization_management/.env
+      - ./.env
     environment:
       - JWT_SECRET=${JWT_SECRET}
-      - AUTHENTICATION_SERVICE_PORT=${AUTHENTICATION_SERVICE_PORT}
+      - TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE_PORT=${TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE_PORT}
       - DATABASE_URL=${DATABASE_URL}
     networks:
       - lms-network
 
-  # Tenant Service
-  tenant-service:
+  identity_and_access_management:
     build:
-      context: ./service/tenant-service
-    container_name: tenant-service
+      context: ./services/identity_and_access_management
     ports:
-      - "${TENANT_SERVICE_PORT}:5001"
+      - "${IDENTITY_AND_ACCESS_MANAGEMENT_SERVICE_PORT}:5002"
+    env_file:
+      - ./services/identity_and_access_management/.env
+      - ./.env
     environment:
       - JWT_SECRET=${JWT_SECRET}
-      - TENANT_SERVICE_PORT=${TENANT_SERVICE_PORT}
+      - IDENTITY_AND_ACCESS_MANAGEMENT_SERVICE_PORT=${IDENTITY_AND_ACCESS_MANAGEMENT_SERVICE_PORT}
       - DATABASE_URL=${DATABASE_URL}
     networks:
       - lms-network
 
-  # User Service
-  user-service:
+  communication_and_notification:
     build:
-      context: ./service/user-service
-    container_name: user-service
+      context: ./services/communication_and_notification
     ports:
-      - "${USER_SERVICE_PORT}:5002"
+      - "${COMMUNICATION_AND_NOTIFICATION_SERVICE_PORT}:5003"
+    env_file:
+      - ./services/communication_and_notification/.env
+      - ./.env
     environment:
       - JWT_SECRET=${JWT_SECRET}
-      - USER_SERVICE_PORT=${USER_SERVICE_PORT}
+      - COMMUNICATION_AND_NOTIFICATION_SERVICE_PORT=${COMMUNICATION_AND_NOTIFICATION_SERVICE_PORT}
       - DATABASE_URL=${DATABASE_URL}
     networks:
       - lms-network
 
-  # PostgreSQL Database
+  learning_and_assessment_management:
+    build:
+      context: ./services/learning_and_assessment_management
+    ports:
+      - "${LEARNING_AND_ASSESSMENT_MANAGEMENT_SERVICE_PORT}:5004"
+    env_file:
+      - ./services/learning_and_assessment_management/.env
+      - ./.env
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - LEARNING_AND_ASSESSMENT_MANAGEMENT_SERVICE_PORT=${LEARNING_AND_ASSESSMENT_MANAGEMENT_SERVICE_PORT}
+      - DATABASE_URL=${DATABASE_URL}
+    networks:
+      - lms-network
+
   db:
     image: postgres:13
-    container_name: lms-postgres-db
+    restart: unless-stopped
     ports:
       - "${DATABASE_PORT}:5432"
+    env_file:
+      - ./.env
     environment:
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - lms-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER} -d ${DATABASE_NAME} -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres-data:

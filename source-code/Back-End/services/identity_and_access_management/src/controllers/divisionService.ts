@@ -1,14 +1,15 @@
 import dotenv from "dotenv";
-import { PrismaClient, Division } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { HttpError } from "../errors/httpError";
 import { handleDatabaseError } from "../utils/handleDatabaseErrors";
 import { createDivisionData, updateDivisionDTO, divisionResponseDTO, divisionExtendedResponseDTO } from "../interfaces/divisions";
-
+import {Division} from "../interfaces/divisions";
 // Load environment variables from .env file
 dotenv.config();
 
 // Instantiate Prisma Client
 const prisma = new PrismaClient();
+
 
 /**
  * Interface to check if tenant exists
@@ -190,21 +191,21 @@ export class DivisionService {
         throw new HttpError({ message: `Division with id: ${data.id} and Tenant id: ${data.tenantId} not found`, statusCode: 404 });
       }
 
-      // Check if the record has not been modified by another process
-      if (existingDivision.version !== data.version) {
-        throw new HttpError({ message: "Version conflict: The record has been modified by another process", statusCode: 409 });
-      }
+      // // Check if the record has not been modified by another process
+      // if (existingDivision?.version !== data.version) {
+      //   throw new HttpError({ message: "Version conflict: The record has been modified by another process", statusCode: 409 });
+      // }
 
-      const updatedDivision = await prisma.division.update({
-        where: { id: data.id, tenantId: data.tenantId },
-        data: {
-          ...data,
-          // Increment the version on successful update
-          version: { increment: 1 },
-        },
-      });
+      // const updatedDivision = await prisma.division.update({
+      //   where: { id: data.id, tenantId: data.tenantId },
+      //   data: {
+      //     ...data,
+      //     // Increment the version on successful update
+      //     version: { increment: 1 },
+      //   },
+    // });**
 
-      return updatedDivision;
+      return existingDivision;
     } catch (error) {
       handleDatabaseError("Could not update division", error);
     }
