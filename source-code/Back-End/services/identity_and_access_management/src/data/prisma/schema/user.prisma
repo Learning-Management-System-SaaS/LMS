@@ -4,8 +4,8 @@ model User {
     tenantId Int // Foreign key to the Tenant model
 
     // User attributes
-    username String // Username of the user
-    email    String // email address of the user
+    username String @unique // Username of the user
+    email    String @unique // email address of the user
     name     String // Name of the user
     password String // password of the user
 
@@ -20,7 +20,8 @@ model User {
     refreshToken String?
 
     // User roles
-
+     userRole        String?   // e.g., "ADMIN", "INSTRUCTOR", "STUDENT"
+     permissions     Json?     // Store as JSON array 
     // Timestamps
     createdAt DateTime @default(now()) // Timestamp for when the division was created
     updatedAt DateTime @updatedAt // Automatically updated when the division is updated

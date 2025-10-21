@@ -32,6 +32,8 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,
         },
       });
     } catch (error) {
@@ -59,6 +61,8 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,
         },
       });
     } catch (error) {
@@ -88,6 +92,8 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,
         },
       });
       if (!user) throw new HttpError({ message: "User not found", statusCode: 404 });
@@ -106,8 +112,12 @@ export class UserService {
    */
   public async createUser(data: createUserDTO): Promise<userResponseDTO | never> {
     try {
+       const normalizedData = {
+      ...data,
+      permissions: data.permissions ?? undefined,
+      };
       return await prisma.user.create({
-        data,
+        data: normalizedData,
         select: {
           phone: true,
           address: true,
@@ -121,6 +131,8 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,
         },
       });
     } catch (error) {
@@ -142,6 +154,12 @@ export class UserService {
       }
 
       const { updatedAt, ...newdata } = { ...data };
+      const normalizedData = {
+      ...newdata,
+      permissions: newdata.permissions ?? undefined, // Convert null → undefined
+      userRole: newdata.userRole ?? undefined,       // Optional, if userRole is nullable
+    };
+
       const updatedUser = await prisma.user.update({
         where: { id: userId },
         select: {
@@ -157,8 +175,10 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,  
         },
-        data: newdata,
+        data: normalizedData,
       });
 
       // Check if the update was unsuccessful
@@ -194,6 +214,8 @@ export class UserService {
           id: true,
           createdAt: true,
           updatedAt: true,
+          permissions: true, 
+          userRole: true,
         },
       });
       if (!deletedUser) throw new HttpError({ message: "User not found", statusCode: 404 });
@@ -212,19 +234,20 @@ export class UserService {
    * @returns The User object if found, null if not found, or throws an error if retrieval fails.
    * @throws {HttpError} if there is an error retrieving the user from the database.
    */
-  public async loginUser({ tenantId, emailOrUsername }: { tenantId: number; emailOrUsername: string }): Promise<User | null | never> {
-    try {
-      const isEmail = emailOrUsername.includes("@");
-      const whereClause = isEmail
-        ? { tenantId_email: { tenantId, email: emailOrUsername } } // For tenantId + email
-        : { tenantId_username: { tenantId, username: emailOrUsername } }; // For tenantId + username
-      const user = await prisma.user.findUnique({ where: whereClause });
+ public async loginUser({ emailOrUsername }: { emailOrUsername: string }): Promise<User | null | never> {
+  try {
+    const isEmail = emailOrUsername.includes("@");
 
-      return user;
-    } catch (error) {
-      handleDatabaseError("Could not retrieve user", error);
-    }
+    const user = await prisma.user.findFirst({
+      where: isEmail
+        ? { email: emailOrUsername }
+        : { username: emailOrUsername },
+    });
+    return user;
+  } catch (error) {
+    handleDatabaseError("Could not retrieve user", error);
   }
+}
   public async getUserRefreshToken({ tenantId, userId }: { tenantId: number; userId: number }): Promise<string | null | undefined | never> {
     try {
       const user = await prisma.user.findUnique({

@@ -6,17 +6,22 @@ import { HttpError } from "../errors/httpError";
 import { customRequest } from "../interfaces";
 import { ROLES } from "../config/roles";
 
-export const authMiddleware = async (req: customRequest, res: Response, next: NextFunction) => {
-  try {
+export const authMiddleware = async (req: customRequest, res: Response, next: NextFunction) => 
+   {
     // req.user = req.headers.user ? JSON.parse(req.headers.user as string) : null;
 
     const token = extractTokenFromHeader(req);
+    console.log("🧩 [authMiddleware] JWT_SECRET =", process.env.JWT_SECRET);
+    console.log("[authMiddleware] headers:", req.headers);
 
+console.log("[authMiddleware] Verifying token with secret:", process.env.JWT_SECRET);
+try {
     const decodedToken = verifyToken({
       token,
       secret: process.env.JWT_SECRET,
     });
 
+    
     // Determine where the tenantId should come from based on the user role
     const tenantId = decodedToken.userRole === ROLES.SAAS_OWNER ? req.body.tenantId : decodedToken.tenantId;
 
@@ -39,3 +44,4 @@ export const authMiddleware = async (req: customRequest, res: Response, next: Ne
     return res.status(401).json(({ error: { message: "Unauthorized" } }));
   }
 };
+

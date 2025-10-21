@@ -5,6 +5,7 @@ import { logging } from "./startup/logging";
 import { database } from "./startup/database";
 import { production } from "./startup/production";
 import { routes } from "./startup/routes";
+import morgan from "morgan";
 import dotenv from "dotenv";
 
 dotenv.config();

@@ -22,10 +22,10 @@ const userService = new UserService();
 export const loginUser = async (req: customRequest, res: Response): Promise<Response> => {
   try {
     // Extract user ID from customRequest parameters
-    const { tenantId, emailOrUsername, password } = req.body;
+    const { emailOrUsername, password } = req.body;
 
     // Call the database service to get the user by the tenantId + email or username
-    const user = await userService.loginUser({ tenantId, emailOrUsername });
+    const user = await userService.loginUser({ emailOrUsername });
 
     if (!user) throw new HttpError({ message: "Invalid credentials", statusCode: 401 });
     const { password: hashedPassword, ...userWithoutPassword } = user;
@@ -40,8 +40,8 @@ export const loginUser = async (req: customRequest, res: Response): Promise<Resp
       }
     }
       const token = generateToken({
-  user: userWithoutPassword,
-  secret: process.env.JWT_ACCESS_TOKEN_SECRET,
+  user:userWithoutPassword,
+  secret: process.env.JWT_SECRET,
 });
     // Respond with the user data if successfully logged in
 

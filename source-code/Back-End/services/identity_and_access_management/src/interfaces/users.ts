@@ -36,7 +36,10 @@ export interface userDataWithoutAudit extends Omit<userBaseModel, auditingFields
  *
  * This omits the password field from the data retrieved from the database.
  */
-export interface userResponseDTO extends Omit<User, "password" | "refreshToken"> {}
+export interface userResponseDTO extends Omit<User, "password" | "refreshToken"> {
+   permissions: any;
+   userRole: any;
+}
 
 /**
  * Interface for creating a user
