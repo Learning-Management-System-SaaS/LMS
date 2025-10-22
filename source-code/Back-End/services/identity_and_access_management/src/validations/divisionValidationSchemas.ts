@@ -1,5 +1,4 @@
 import Joi from "joi";
-import { subscriptionStatusArray, subscriptionTypesArray } from "../constants";
 
 //! These Joi validation schemas in this file should be in sync with
 //! the division DTOs and interfaces in file `/src/interfaces/index.ts`.
