@@ -3,7 +3,7 @@ import Joi from "joi";
 // Define the required fields for creating a user
 const userRequiredFields = {
   name: Joi.string().required(),
-  tenantId: Joi.number().required(),
+ // tenantId: Joi.number().required(),
   email: Joi.string().email().required(),
   // Prohibits '@' in username
   username: Joi.string()
@@ -56,7 +56,7 @@ export const updateUserSchema = Joi.object({
  * This schema is used by the controller to validate the request body when logging in a user.
  */
 export const loginUserSchema = Joi.object({
-  tenantId: userRequiredFields.tenantId,
+  //tenantId: userRequiredFields,
   emailOrUsername: Joi.alternatives().try(userRequiredFields.email, userRequiredFields.username).required().label("Email or Username"),
   password: userRequiredFields.password,
 });

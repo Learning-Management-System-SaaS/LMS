@@ -11,10 +11,8 @@ export const authMiddleware = async (req: customRequest, res: Response, next: Ne
     // req.user = req.headers.user ? JSON.parse(req.headers.user as string) : null;
 
     const token = extractTokenFromHeader(req);
-    console.log("🧩 [authMiddleware] JWT_SECRET =", process.env.JWT_SECRET);
     console.log("[authMiddleware] headers:", req.headers);
 
-console.log("[authMiddleware] Verifying token with secret:", process.env.JWT_SECRET);
 try {
     const decodedToken = verifyToken({
       token,

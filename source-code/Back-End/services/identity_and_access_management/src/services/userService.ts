@@ -248,10 +248,10 @@ export class UserService {
     handleDatabaseError("Could not retrieve user", error);
   }
 }
-  public async getUserRefreshToken({ tenantId, userId }: { tenantId: number; userId: number }): Promise<string | null | undefined | never> {
+  public async getUserRefreshToken({ userId }: { userId: number }): Promise<string | null | undefined | never> {
     try {
       const user = await prisma.user.findUnique({
-        where: { tenantId, id: userId },
+        where: { id: userId },
       });
       return user?.refreshToken;
     } catch (error) {
