@@ -12,7 +12,7 @@ export interface Division {
     description: string | null;
     createdAt: Date;
     updatedAt: Date;
-    version?: number| null;
+    version: number;
 }
 /**
  * Base interface for the Division entity.
