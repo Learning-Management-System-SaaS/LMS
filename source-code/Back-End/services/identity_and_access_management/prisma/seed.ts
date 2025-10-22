@@ -37,12 +37,11 @@ async function main() {
     });
   }
 
-  console.log("✅ 10 demo users inserted successfully!");
 }
 
 main()
   .catch((err) => {
-    console.error("❌ Error inserting users:", err);
+    console.error(" Error inserting users:", err);
     process.exit(1);
   })
   .finally(async () => {
