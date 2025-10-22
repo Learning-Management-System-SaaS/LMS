@@ -55,7 +55,8 @@ export class DivisionService {
       const Division = await prisma.division.findUnique({
         where: { id: DivisionId, tenantId },
       });
-      if (!Division) throw new HttpError({ message: "User not found", statusCode: 404 });      
+      if (!Division) throw new HttpError({ message: "User not found", statusCode: 404 });
+      return Division      
     } catch (error) {
       console.log(error);
       winston.error("Error while retrieving user in database service", error);
