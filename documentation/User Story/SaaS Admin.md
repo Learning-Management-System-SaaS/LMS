@@ -2,9 +2,10 @@ SaaS Administrator
 
 # Manage Role 
 
-> User Story: As a SaaS Administrator, I want to manage roles (Create, Edit and delete) to control access level based on different responsibility,
-              only assigns high level roles for each tenant, so that tenants can access and manage their tenant hierarchy. 
-> Acceptance Criteria 
+- User Story: As a SaaS Administrator, I want to manage roles (Create, Edit and delete) to control access level based on different responsibility,
+              only assigns high level roles for each tenant, so that tenants can access and manage their tenant hierarchy.
+
+- Acceptance Criteria 
 
 1- Create Role Record 
 - SaaS administrator can “Create” new role record. 
@@ -62,9 +63,10 @@ SaaS Administrator
 
 #Manage Permission 
 
-> User Story: As a SaaS Administrator, I want to manage permissions (Create, Edit, Delete), so that I can control which actions and features are available to
-              different roles int he system. 
-> Acceptance Criteria 
+- User Story: As a SaaS Administrator, I want to manage permissions (Create, Edit, Delete), so that I can control which actions and features are available to
+              different roles int he system.
+
+- Acceptance Criteria 
 
 1- View Permission List 
 - SaaS administrator can view permissions list. 
@@ -115,13 +117,13 @@ SaaS Administrator
 
 # Manage Tenant 
 
-> User Story: As a SaaS Administrator, I want to manage tenant record (Create, Edit, Delete) so that I can onboard new clients. 
-> Description:  
+-  User Story: As a SaaS Administrator, I want to manage tenant record (Create, Edit, Delete) so that I can onboard new clients. 
+-  Description:  
     - The SaaS Administrator needs the ability to onboard new tenant organizations, which involves setting up their accounts, assigning initial settings,
       and ensuring they have access to all necessary features of the LMS. This feature will also allow for the management of existing tenants,
       including updating their information, monitoring their usage, and addressing any issues related to their accounts. 
 
-> Acceptance Criteria: 
+- Acceptance Criteria: 
 
 1- Create Tenant Record 
 
@@ -171,10 +173,10 @@ SaaS Administrator
 
 # Manage User Account 
 
-> User Story: As a SaaS administrator, I want to manage user account (Create, Edit and Delete), 
+- User Story: As a SaaS administrator, I want to manage user account (Create, Edit and Delete), 
               So that I can assign high level roles, then users will be able to access and manage their tenant. 
 
-> Acceptance Criteria: 
+- Acceptance Criteria: 
 
 1- Create User Account Record 
 
@@ -222,10 +224,10 @@ SaaS Administrator
 
 # Manage Subscription 
 
-> User Story: As a SaaS Administrator, I want to manage tenants' subscription (create, edit, delete), so that I can control which tenant have active access to
+- User Story: As a SaaS Administrator, I want to manage tenants' subscription (create, edit, delete), so that I can control which tenant have active access to
              LMS system according to their plan and billing cycle.  
 
-> Acceptance Criteria: 
+- Acceptance Criteria: 
 
 1- Create Subscription Record 
 
