@@ -3,7 +3,6 @@ import Joi from "joi";
 // Define the required fields for creating a user
 const userRequiredFields = {
   name: Joi.string().required(),
- // tenantId: Joi.number().required(),
   email: Joi.string().email().required(),
   // Prohibits '@' in username
   username: Joi.string()
