@@ -3,16 +3,52 @@
 
 # Phase One: SaaS Admin
 
-Microservice 1 : Identity and access management
-tables: Permission, Role, Role_Permission, User Account
+Microservice 1: Authentication Service (Identity and access management)
+Login and Token-Based Auth (JWT)
 
 
-Microservice 2: Tenant and Division Management
-Tables: Plan (Trail), Tenant, Subscription (trail), Location, Divisions, Division-Type, Tenant-Divisions
+Microservice 2 : User Services
+tables: Permission, Role, Role_Permission, User Account => Org-Admin
 
 
+Microservice 3: Tenant Service
+Tables: Plan (standard), Tenant, Location, Subscription (trail), Division-Type
+
+
+Microservice 4: Messaging Service
+Tables: Message
+
+
+---------------------------------------------------
 
 
 # Phase Two: Organization Administrator
+
+Micorservice 1: Subscription and Payment Service
+Tables: Plan, Subscription, Payment
+
+
+Microservice 2: User Services
+Tables: User Account (dep-admin), Messaging-permissions
+
+
+Microservice 3: Tenant and Division Management
+Tables: Divisions, Tenant-Divisions
+
+
+Microservice 4: Messaging Service
+Tables: Message
+
+
+Microservice 5: Notifications
+Tables: Notification
+
+---------------------------------------------------
+
+# Phase Three: Department Administrator
+
+
+
+
 
 
