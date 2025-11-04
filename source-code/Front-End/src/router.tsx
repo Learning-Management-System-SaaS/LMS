@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import SuperAdmin from "./admin/super-admin/main";
-import AdminDashboard from "./admin/super-admin/page/dashboard";
+import AdminDashboard from "./admin/super-admin/page/adminDashboard";
 import SubscriptionPage from "./admin/super-admin/page/subscription";
 import SettingsPage from "./admin/super-admin/page/settings";
 import UsersPage from "./admin/super-admin/page/users";
@@ -24,6 +24,9 @@ import MessagesList from "./admin/super-admin/components/messagesList";
 import MessageForm from "./admin/super-admin/components/messageForm";
 import UserDetails from "./admin/super-admin/components/userDetails";
 import TenantDetails from "./admin/super-admin/components/tenantDetails";
+import SubscriptionDetails from "./admin/super-admin/components/subscriptoinDetails";
+import TenantAdmin from "./admin/tenant-admin/main";
+import TenantDashboard from "./admin/tenant-admin/pages/tenantDashboard";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,8 +37,8 @@ export const router = createBrowserRouter([
     element: <SuperAdmin />,
     children: [
       {
-        index:true,
-        element:<Navigate to={'dashboard'} replace/>
+        index: true,
+        element: <Navigate to={"dashboard"} replace />,
       },
       {
         path: "dashboard",
@@ -44,99 +47,70 @@ export const router = createBrowserRouter([
       {
         path: "subscriptions",
         element: <SubscriptionPage />,
-        children:[
+        children: [
           {
             index: true,
-            element:<SubscriptionsList />
+            element: <SubscriptionsList />,
           },
           {
-            path:"newTenant",
-            element:<SubscriptionForm />
+            path: "newsubscription",
+            element: <SubscriptionForm />,
           },
           {
-            path:"subscriptionDetails/:id",
-            element:<UserDetails/>
-          }
-        ]
+            path: "subscriptionDetails/:id",
+            element: <SubscriptionDetails />,
+          },
+        ],
       },
       {
         path: "users",
         element: <UsersPage />,
-        children:[
+        children: [
           {
             index: true,
-            element:<UserList />
+            element: <UserList />,
           },
           {
-            path:"newUser",
-            element:<UserForm/>
+            path: "newUser",
+            element: <UserForm />,
           },
           {
-            path:"userDetails/:id",
-            element:<UserDetails/>
-          }
-        ]
-
+            path: "userDetails/:id",
+            element: <UserDetails />,
+          },
+        ],
       },
       {
         path: "tenants",
         element: <TenantsPage />,
-        children:[
+        children: [
           {
             index: true,
-            element:<TenantList />
+            element: <TenantList />,
           },
           {
-            path:"newTenant",
-            element:<TenantForm />
+            path: "newTenant",
+            element: <TenantForm />,
           },
           {
-            path:"tenantDetails/:id",
-            element:<TenantDetails/>
-          }
-        ]
-      },
-      {
-        path: "permissions",
-        element: <PermissionsPage />,
-        children:[
-          {
-            index: true,
-            element:<PermissionsList />
+            path: "tenantDetails/:id",
+            element: <TenantDetails />,
           },
-          {
-            path:"newTenant",
-            // element:<PermissionsForm />
-          }
-        ]
-      },
-      {
-        path: "roles",
-        element: <RolesPage />,
-        children:[
-          {
-            index: true,
-            element:<TenantList />
-          },
-          {
-            path:"newRole",
-            // element:<RolesForm />
-          }
-        ]
+        ],
       },
       {
         path: "messages",
         element: <Messages />,
-        children:[
+        children: [
           {
             index: true,
-            element:<MessagesList />
+            element: <MessagesList />,
           },
           {
-            path:"newMessage",
-            element:<MessageForm />
-          }
-        ]
+            path: "newMessage",
+            element: <MessageForm />,
+          },
+        ],
       },
       {
         path: "support",
@@ -146,6 +120,96 @@ export const router = createBrowserRouter([
         path: "settings",
         element: <ComingSoon />,
         // element: <SettingsPage />,
+        children: [
+          {
+            path: "permissions",
+            element: <PermissionsPage />,
+            children: [
+              {
+                index: true,
+                element: <PermissionsList />,
+              },
+              {
+                path: "newTenant",
+                // element:<PermissionsForm />
+              },
+            ],
+          },
+          {
+            path: "roles",
+            element: <RolesPage />,
+            children: [
+              {
+                index: true,
+                element: <TenantList />,
+              },
+              {
+                path: "newRole",
+                // element:<RolesForm />
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/tenant",
+    element: <TenantAdmin />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to={"dashboard"} replace />,
+      },
+      {
+        path: "dashboard",
+        element: <TenantDashboard />,
+      },
+      // {
+      //   path:"users",
+      //   element: <Users/>,
+      //   children=[
+      //     {
+      //       path:"addUser",
+      //       element: <UserForm />,
+      //     },
+      //     {
+      //       path:"userDetails",
+      //       element: <UserDetails/>
+      //     },
+      //   ]
+      // },
+      // {
+      //   path:"divisions",
+      //   element: <Divisions />,
+      //   children=[
+      //     {
+      //       path:"addDivision",
+      //       element: <DivisonForm />,
+      //     },
+      //     {
+      //       path:"divisionDetails",
+      //       element: <DivisionDetails/>
+      //     },
+      //   ]
+      // },
+      {
+        path: "messages",
+        element: <Messages />,
+        children: [
+          {
+            index: true,
+            element: <MessagesList />,
+          },
+          {
+            path: "newMessage",
+            element: <MessageForm />,
+          },
+        ],
+      },
+      {
+        path: "support",
+        element: <Support />,
       },
     ],
   },

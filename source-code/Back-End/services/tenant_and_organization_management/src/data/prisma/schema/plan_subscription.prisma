@@ -1,0 +1,33 @@
+model Subscription {
+    id                 Int                @id @default(autoincrement())
+    susbscriptonStatus SubscriptionStatus
+    plan_id            Int
+
+    plan   Plan     @relation(fields: [plan_id], references: [id])
+    Tenant Tenant[]
+}
+
+model Plan {
+    id           Int            @id @default(autoincrement())
+    plantype     planType       @default(FREE)
+    price        Decimal
+    billingCycle String
+    currency     String
+    Subscription Subscription[]
+}
+
+// Enum to track subscription status
+enum SubscriptionStatus {
+    TRIAL
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+    CANCELLED
+}
+
+enum planType {
+    FREE
+    BASIC
+    STANDARD
+    PRO
+}

@@ -15,7 +15,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onEdit, onBack }) => {
  const location = useLocation()
  const userId = location.state.user
  const user = mockUsers.find(user=>user.id === userId)
-console.log(user)
+
   const sections = [
     {
       title: "User Information",
@@ -25,14 +25,6 @@ console.log(user)
         { label: "Tenant Name", name: "tenantName" },
       ],
     },
-    // {
-    //   title: "Subscription Details",
-    //   fields: [
-    //     { label: "Start Date", name: "startDate", type: "date" },
-    //     { label: "End Date", name: "endDate", type: "date" },
-    //     { label: "Status", name: "status" },
-    //   ],
-    // },
   ];
 
   const handleSave = (values: Record<string, string>) => {

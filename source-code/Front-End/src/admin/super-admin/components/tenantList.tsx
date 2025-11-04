@@ -1,8 +1,6 @@
 // src/pages/TenantList.tsx
-import { useState } from "react";
-import { Tenant, mockTenants } from "../../../data/mockData";
+import { mockTenants } from "../../../data/mockData";
 import Table from "../common/table";
-import FilterSort from "../common/filterSort";
 import { useNavigate } from "react-router-dom";
 
 interface TenantListProps {
@@ -12,11 +10,13 @@ interface TenantListProps {
 }
 
 const TenantList: React.FC<TenantListProps> = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <Table
         data={mockTenants}
+       
+        
         columns={[
           { key: "id", label: "ID" },
           { key: "name", label: "Name" },
@@ -27,7 +27,12 @@ const TenantList: React.FC<TenantListProps> = () => {
         ]}
         action={true}
         title="Tenants"
-        onRowClick={(item)=>navigate(`tenantDetails/${item.id}`,{state:{tenant:item.id}})}
+        haveExport={true}
+        haveFilter={true}
+        filterFactors={['active','inactive','premium','standard','basic']}
+        onRowClick={(item) =>
+          navigate(`tenantDetails/${item.id}`, { state: { tenant: item.id } })
+        }
         searchFn={(item, term) =>
           item.id.toLowerCase().includes(term.toLowerCase()) ||
           item.name.toLowerCase().includes(term.toLowerCase())
