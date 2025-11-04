@@ -1,0 +1,15 @@
+*Tenant has separte domain and separate database
+--------------------------------------------------
+
+# Phase One: SaaS Admin
+
+Microservice 1 : Identity and access management
+tables: Permission, Role, Role_Permission, User Account
+
+
+Microservice 2: Tenant and Division Management
+Tables: Tenant, Plan (Trail), Subscription (trail), Location, Divisions
+
+#Phase Two: Organization Administrator
+
+
