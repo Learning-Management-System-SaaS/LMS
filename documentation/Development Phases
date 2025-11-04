@@ -8,7 +8,7 @@ tables: Permission, Role, Role_Permission, User Account
 
 
 Microservice 2: Tenant and Division Management
-Tables: Plan (Trail), Tenant, Subscription (trail), Location, Divisions, Tenant-Divisions
+Tables: Plan (Trail), Tenant, Subscription (trail), Location, Divisions, Division-Type, Tenant-Divisions
 
 
 
