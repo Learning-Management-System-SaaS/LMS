@@ -5,7 +5,7 @@ import "./assets/css/fonts.css";
 import "./assets/css/global.css";
 import "./assets/css/index.css";
 import { router } from "./router.tsx";
-
+import LoginForm from './pages/landing/auth.tsx'
 
 
 

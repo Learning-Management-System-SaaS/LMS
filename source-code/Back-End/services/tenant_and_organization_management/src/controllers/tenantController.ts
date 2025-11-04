@@ -54,6 +54,8 @@ export const getTenantById = async (req: customRequest, res: Response): Promise<
  * @param req Express Request object
  * @param res Express Response object
  * @returns A Express Response object with the newly created tenant
+ * 
+ * mandatory Data => Tenant Name, Location details
  */
 export const createTenant = async (req: Request, res: Response): Promise<Response> => {
   try {

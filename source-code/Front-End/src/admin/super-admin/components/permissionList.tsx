@@ -1,9 +1,10 @@
 import { mockTenants } from "../../../data/mockData";
+import Table from "../common/table";
 
 const PermissionsList: React.FC = () => {
   return (
     <div>
-      {/* <Table
+      <Table
         title="Users"
         // data={mockPermission}
         columns={[
@@ -17,7 +18,7 @@ const PermissionsList: React.FC = () => {
           item.id.toLowerCase().includes(term.toLowerCase()) ||
           item.name.toLowerCase().includes(term.toLowerCase())
         }
-      /> */}
+      />
     </div>
   );
 };

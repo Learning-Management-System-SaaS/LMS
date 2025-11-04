@@ -1,7 +1,3 @@
-import React from 'react'
-import MessagesTable from '../components/messagesList'
-import MessageTable from '../components/messageTable'
-import MessagesList from '../components/messagesList'
 import { Outlet, useLocation } from 'react-router-dom'
 import Breadcrumbs from '../common/breadcrumbs'
 

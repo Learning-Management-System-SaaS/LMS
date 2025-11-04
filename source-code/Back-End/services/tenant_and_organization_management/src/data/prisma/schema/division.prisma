@@ -1,0 +1,28 @@
+model Division {
+    id              Int     @id @default(autoincrement()) // Unique ID for each division
+    parent_id       Int? // Nullable to represent root divisions
+    location_id     Int
+    name            String // Name of the division
+    divisionType_id Int
+    description     String? // Description of the division
+
+    createdAt DateTime @default(now()) // Timestamp for when the division was created
+    updatedAt DateTime @updatedAt // Automatically updated when the division is updated
+
+    // Relations
+    // An optional self-relation where a Division can have a parent Division.
+    parent       Division?    @relation("DivisionHierarchy", fields: [parent_id], references: [id])
+    // An array of Division objects representing all the child divisions under a parent Division.
+    children     Division[]   @relation("DivisionHierarchy")
+    location     Location     @relation(fields: [location_id], references: [id])
+    divisionType DivisionType @relation(fields: [divisionType_id], references: [id])
+}
+
+model DivisionType {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    createdAt DateTime   @default(now()) // Timestamp for when the division was created
+    updatedAt DateTime   @updatedAt // Automatically updated when the division is updated
+    Division  Division[]
+}
