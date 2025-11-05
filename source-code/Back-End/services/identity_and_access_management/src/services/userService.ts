@@ -1,6 +1,6 @@
 import winston from "winston";
 import dotenv from "dotenv";
-import { Prisma, PrismaClient, User } from "@prisma/client";
+import {  PrismaClient, User } from "@prisma/client";
 import { HttpError } from "../errors/httpError";
 import { createUserDTO, updateUserDTO, userResponseDTO } from "../interfaces/users";
 import { handleDatabaseError } from "../utils/handleDatabaseErrors";
@@ -20,20 +20,20 @@ export class UserService {
     try {
       return await prisma.user.findMany({
         select: {
+          id: true,
+          tenantDivisionId: true,
+          email: true,
+          firstName: true,
+          lastName: true,
           phone: true,
           address: true,
-          sex: true,
+          gender: true,
           birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,
+          profileImageUrl: true, 
+          permissions:true,
+          userRole:true,
+          createdAt:true,
+          updatedAt:true
         },
       });
     } catch (error) {
@@ -44,25 +44,25 @@ export class UserService {
    * Retrieves all users from the database
    * @returns An array of all users in the database if successful, otherwise throws an error
    */
-  public async getUsers(tenantId: number): Promise<userResponseDTO[] | never> {
+  public async getUsers(tenantDivisionId: number): Promise<userResponseDTO[] | never> {
     try {
       return await prisma.user.findMany({
-        where: { tenantId },
+        where: { tenantDivisionId },
         select: {
+          id: true,
+          tenantDivisionId: true,
+          email: true,
+          firstName: true,
+          lastName: true,
           phone: true,
           address: true,
-          sex: true,
+          gender: true,
           birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,
+          profileImageUrl: true, 
+          permissions:true,
+          userRole:true,
+          createdAt:true,
+          updatedAt:true
         },
       });
     } catch (error) {
@@ -75,25 +75,25 @@ export class UserService {
    * @param userId The ID of the user to retrieve
    * @returns The user if found, otherwise throws a 404 error
    */
-  public async getUserById({ userId, tenantId }: { tenantId: number; userId: number }): Promise<userResponseDTO | never> {
+  public async getUserById({ userId}: { userId: number }): Promise<userResponseDTO | never> {
     try {
       const user = await prisma.user.findUnique({
-        where: { id: userId, tenantId },
+        where: { id: userId},
         select: {
+          id: true,
+          tenantDivisionId: true,
+          email: true,
+          firstName: true,
+          lastName: true,
           phone: true,
           address: true,
-          sex: true,
+          gender: true,
           birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,
+          profileImageUrl: true, 
+          permissions:true,
+          userRole:true,
+          createdAt:true,
+          updatedAt:true
         },
       });
       if (!user) throw new HttpError({ message: "User not found", statusCode: 404 });
@@ -119,20 +119,20 @@ export class UserService {
       return await prisma.user.create({
         data: normalizedData,
         select: {
+          id: true,
+          tenantDivisionId: true,
+          email: true,
+          firstName: true,
+          lastName: true,
           phone: true,
           address: true,
-          sex: true,
+          gender: true,
           birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,
+          profileImageUrl: true, 
+          permissions:true,
+          userRole:true,
+          createdAt:true,
+          updatedAt:true
         },
       });
     } catch (error) {
@@ -163,20 +163,20 @@ export class UserService {
       const updatedUser = await prisma.user.update({
         where: { id: userId },
         select: {
+          id: true,
+          tenantDivisionId: true,
+          email: true,
+          firstName: true,
+          lastName: true,
           phone: true,
           address: true,
-          sex: true,
+          gender: true,
           birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,  
+          profileImageUrl: true, 
+          permissions:true,
+          userRole:true,
+          createdAt:true,
+          updatedAt:true
         },
         data: normalizedData,
       });
@@ -201,22 +201,7 @@ export class UserService {
     try {
       const deletedUser = await prisma.user.delete({
         where: { id: userId },
-        select: {
-          phone: true,
-          address: true,
-          sex: true,
-          birthday: true,
-          profileImageUrl: true,
-          name: true,
-          tenantId: true,
-          email: true,
-          username: true,
-          id: true,
-          createdAt: true,
-          updatedAt: true,
-          permissions: true, 
-          userRole: true,
-        },
+        
       });
       if (!deletedUser) throw new HttpError({ message: "User not found", statusCode: 404 });
       return deletedUser;
@@ -226,22 +211,22 @@ export class UserService {
   }
 
   /**
-   * Retrieves a user by tenantId and email or username.
+   * Retrieves a user by tenantDivisionId and email or username.
    * Determines if the emailOrUsername is an email or username,
    *
-   * @param tenantId The ID of the tenant to which the user belongs.
+   * @param tenantDivisionId The ID of the tenant to which the user belongs.
    * @param emailOrUsername The email or username of the user.
    * @returns The User object if found, null if not found, or throws an error if retrieval fails.
    * @throws {HttpError} if there is an error retrieving the user from the database.
    */
  public async loginUser({ emailOrUsername }: { emailOrUsername: string }): Promise<User | null | never> {
   try {
-    const isEmail = emailOrUsername.includes("@");
+    
 
     const user = await prisma.user.findFirst({
-      where: isEmail
-        ? { email: emailOrUsername }
-        : { username: emailOrUsername },
+      where:
+         { email: emailOrUsername }
+        
     });
     return user;
   } catch (error) {
@@ -260,15 +245,15 @@ export class UserService {
   }
   /**
    * Stores the refresh token for a user in the database.
-   * @param tenantId The ID of the tenant to which the user belongs.
+   * @param tenantDivisionId The ID of the tenant to which the user belongs.
    * @param userId The ID of the user for whom the refresh token is being stored.
    * @param refreshToken The refresh token to store.
    * @throws {HttpError} if there is an error updating the refresh token.
    */
-  public async storeUserRefreshToken({ tenantId, userId, refreshToken }: { tenantId: number; userId: number; refreshToken: string }) {
+  public async storeUserRefreshToken({ tenantDivisionId, userId, refreshToken }: { tenantDivisionId: number; userId: number; refreshToken: string }) {
     try {
       await prisma.user.update({
-        where: { tenantId, id: userId },
+        where: { tenantDivisionId, id: userId },
         data: { refreshToken },
       });
     } catch (error) {
@@ -278,15 +263,15 @@ export class UserService {
 
   /**
    * Deletes the refresh token for a user.
-   * @param tenantId The ID of the tenant to which the user belongs.
+   * @param tenantDivisionId The ID of the tenant to which the user belongs.
    * @param userId The ID of the user to delete the refresh token for.
    * @param refreshToken The refresh token to delete.
    * @throws {HttpError} if there is an error deleting the refresh token.
    */
-  public async deleteUserRefreshToken({ tenantId, userId }: { tenantId: number; userId: number; refreshToken: string }) {
+  public async deleteUserRefreshToken({ tenantDivisionId, userId }: { tenantDivisionId: number; userId: number; refreshToken: string }) {
     try {
       await prisma.user.update({
-        where: { tenantId, id: userId },
+        where: { tenantDivisionId, id: userId },
         data: { refreshToken: null },
       });
     } catch (error) {

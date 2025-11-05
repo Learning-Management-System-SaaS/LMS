@@ -69,7 +69,7 @@ export const getUserById = async (req: customRequest, res: Response): Promise<Re
     const tenantId = req.user?.tenantId!;
 
     // Call the database service to get the user by ID
-    const user = await userService.getUserById({ userId, tenantId });
+    const user = await userService.getUserById({ userId });
 
     // Respond with the user data if found
     return res.status(200).json(createResponseObject<userResponseDTO>({ data: user }));
