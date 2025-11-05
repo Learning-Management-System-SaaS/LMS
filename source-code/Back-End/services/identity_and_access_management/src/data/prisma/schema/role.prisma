@@ -1,0 +1,19 @@
+model Role {
+    id          Int    @id @default(autoincrement())
+    name        String
+    discription String
+
+    // Timestamps
+    createdAt      DateTime         @default(now())
+    updatedAt      DateTime         @updatedAt
+    userRole       userRole[]
+    rolePermission rolePermission[]
+}
+
+model userRole {
+    roleId Int @id
+    userId Int
+
+    user User @relation(fields: [userId], references: [id])
+    role Role @relation(fields: [roleId], references: [id])
+}
