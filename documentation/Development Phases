@@ -4,16 +4,16 @@
 # Phase One: SaaS Admin
 
 Microservice 1: Authentication Service (Identity and access management)
-Tables: User, User-Roles, Role-Permissions
-Security: JWT
+Tables: User, User-Roles, Role-Permissions       // done
+Security: JWT                                   // not yet
 
 
 Microservice 2 : User Services
-tables: User Account, Role, Permission
+tables: User Account, Role, Permission          // done
 
 
 Microservice 3: Tenant Service
-Tables: Tenant, Location, Division-Type
+Tables: Tenant, Location, Division-Type         // done => 5/11
 
 
 Microservice 3: Subscription and Payment Service

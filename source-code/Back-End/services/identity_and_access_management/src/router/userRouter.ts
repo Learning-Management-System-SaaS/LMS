@@ -29,7 +29,7 @@ const router: Router = Router();
 
 
 // apply auth middleware
-router.use(authMiddleware);
+// router.use(authMiddleware);
 
 /**
  * GET /api/users
@@ -55,7 +55,7 @@ router.get("/all", isAuthorized({ allowedRoles: [ROLES.SAAS_OWNER] }), getAllUse
  * @returns {Promise<Response>} 200 - An array of users.
  * @returns {Promise<Response>} 500 - An error occurred while fetching users.
  */
-router.get("/", isAuthorized({ allowedPermissions: [PERMISSIONS.VIEW_USER] }), getUsers);
+router.get("/",  getUsers);
 
 /**
  * GET /api/users/:id

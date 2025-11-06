@@ -1,10 +1,10 @@
 import { Response } from "express";
 import { UserService } from "../services/userService";
 import { createUserDTO, userResponseDTO, updateUserDTO } from "../interfaces/users";
+import { getHashedPassword, isValidPassword } from "../utils/verifyPassword";
 import { handleControllerError } from "../utils/handleContollerErrors";
 import { createResponseObject } from "../utils/createResponseObject";
 import { customRequest } from "../interfaces";
-import { getHashPassword, isValidPassword } from "../utils/verifyPassword";
 import { generateToken } from "../utils/jwt";
 import { HttpError } from "../errors/httpError";
 
@@ -19,7 +19,7 @@ const userService = new UserService();
  * @throws {HttpError} if the user is not found or if the password is invalid
  * @throws {HttpError} if there is an internal server error
  */
-export const loginUser = async (req: customRequest, res: Response): Promise<Response> => {
+export const Login = async (req: customRequest, res: Response): Promise<Response> => {
   try {
     // Extract user ID from customRequest parameters
     const { emailOrUsername, password } = req.body;
@@ -65,13 +65,13 @@ export const loginUser = async (req: customRequest, res: Response): Promise<Resp
  * @param res Express Response object
  * @returns A Express Response object with the newly created user
  */
-export const createUser = async (req: customRequest, res: Response): Promise<Response> => {
+export const Signup = async (req: customRequest, res: Response): Promise<Response> => {
   try {
     // Extract user data from request body
     const requestBody: createUserDTO = req.body;
 
     // Hash the user's password
-    requestBody.password = await getHashPassword(requestBody.password);
+    requestBody.password = await getHashedPassword(requestBody.password);
 
     // Call the database service to create a new user
     const newUser = await userService.createUser(requestBody);
