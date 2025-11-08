@@ -4,6 +4,7 @@ import {  PrismaClient, User } from "@prisma/client";
 import { HttpError } from "../errors/httpError";
 import { createUserDTO, updateUserDTO, userResponseDTO } from "../interfaces/users";
 import { handleDatabaseError } from "../utils/handleDatabaseErrors";
+import { number } from "joi";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -32,6 +33,7 @@ export class UserService {
           profileImageUrl: true, 
           permissions:true,
           userRole:true,
+          roleId:true,
           createdAt:true,
           updatedAt:true
         },
@@ -47,7 +49,7 @@ export class UserService {
   public async getUsers(tenantDivisionId: number): Promise<userResponseDTO[] | never> {
     try {
       return await prisma.user.findMany({
-        where: { tenantDivisionId },
+        where: { tenantDivisionId},
         select: {
           id: true,
           tenantDivisionId: true,
@@ -61,6 +63,7 @@ export class UserService {
           profileImageUrl: true, 
           permissions:true,
           userRole:true,
+          roleId:true,
           createdAt:true,
           updatedAt:true
         },
@@ -92,6 +95,7 @@ export class UserService {
           profileImageUrl: true, 
           permissions:true,
           userRole:true,
+          roleId:true,
           createdAt:true,
           updatedAt:true
         },
@@ -131,6 +135,7 @@ export class UserService {
           profileImageUrl: true, 
           permissions:true,
           userRole:true,
+          roleId:true,
           createdAt:true,
           updatedAt:true
         },
@@ -175,6 +180,7 @@ export class UserService {
           profileImageUrl: true, 
           permissions:true,
           userRole:true,
+          roleId:true,
           createdAt:true,
           updatedAt:true
         },
