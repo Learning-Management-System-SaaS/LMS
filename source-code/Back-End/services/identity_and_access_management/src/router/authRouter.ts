@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, loginUser } from "../controllers/authController";
+import { Signup, Login } from "../controllers/authController";
 import { loginUserSchema } from "../validations/userValidationSchemas";
 import { validateTenantIdMatch } from "../middlewares/validateTenantIdMatch";
 import { validateReqParamsIdMatch } from "../middlewares/validateReqParamsIdMatch";
@@ -31,7 +31,7 @@ const router: Router = Router();
  * @returns {Promise<Response>} 400 - Validation error, missing or incorrect user data.
  * @returns {Promise<Response>} 500 - An error occurred while logging in the user.
  */
-router.post("/login", validateRequestBody(loginUserSchema), loginUser);
-router.post("/", [validateRequestBody(loginUserSchema), validateTenantIdMatch, isAuthorized({ allowedPermissions: [PERMISSIONS.CREATE_USER] })], createUser);
+router.post("/login", validateRequestBody(loginUserSchema), Login);
+router.post("/signup", Signup);
 
 export { router };

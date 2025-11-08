@@ -17,6 +17,8 @@ const MessagesList: React.FC= () => {
       ]}
       action={true}
       readBtn={true}
+      haveFilter={true}
+      filterFactors={['technicalIssue','complaint','other']}
       searchFn={(item, term) =>
           item.tenantName.toLowerCase().includes(term.toLowerCase()) ||
           item.messageType.toLowerCase().includes(term.toLowerCase())

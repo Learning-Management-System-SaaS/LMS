@@ -1,7 +1,6 @@
 import { User } from "@prisma/client";
 import { makeNullFieldsOptional } from "../utils/typesUtilities";
-import { auditingFields, subscriptionFieldsOptional, subscriptionFieldsUnion } from "../types/users";
-import { divisionResponseDTO } from "./divisions";
+import { auditingFields} from "../types/users";
 
 //! When updating this file, and these interfaces
 //! make sure validation schemas in `validations/userValidationSchemas.ts` are updated

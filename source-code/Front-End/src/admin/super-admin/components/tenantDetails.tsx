@@ -1,14 +1,10 @@
-import React from "react";
 import DetailsCard from "../common/detailsCard";
+import { useLocation } from "react-router-dom";
 
 const TenantDetails = () => {
-  const tenantData = {
-    tenantName: "Riverdale High School",
-    subscriptionType: "Premium Tier",
-    startDate: "2023-08-01",
-    endDate: "2024-07-31",
-    status: "Active",
-  };
+  const location = useLocation()
+  const tenant = location.state.tenant
+  const tenantData = {...tenant}
 
   const sections = [
     {

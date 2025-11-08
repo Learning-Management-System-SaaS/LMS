@@ -18,6 +18,7 @@ const UserList: React.FC = () => {
         { key: "tenantName", label: "Tenant" },
       ]}
       action={true}
+      haveExport={true}
       onRowClick={(item)=>navigate(`userDetails/${item.id}`, { state: { user: item.id} })}
       searchFn={(item, term) =>
           item.id.toLowerCase().includes(term.toLowerCase()) ||

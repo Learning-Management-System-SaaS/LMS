@@ -4,6 +4,7 @@ import FilterSort from "./filterSort";
 import { Message } from "../../../data/mockData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "./pagination";
 
 interface TableColumn<T> {
   key: keyof T;
@@ -20,6 +21,10 @@ interface TableProps<T> {
   readBtn?: boolean;
   onRowClick?: (item: T) => void;
   searchFn: (Item: T, term: String) => boolean;
+  haveExport?:boolean
+  haveSort?:boolean;
+  haveFilter?:boolean;
+  filterFactors?:string[]
 }
 
 const Table = <T extends object>({
@@ -31,16 +36,29 @@ const Table = <T extends object>({
   onRowClick,
   searchFn,
   readBtn,
+  haveExport,
+  haveSort,
+  haveFilter,
+  filterFactors,
+ 
 }: TableProps<T>) => {
   const navigate = useNavigate();
+  const [order,setOrder] =useState('asc')
+   const sortBy =()=>{
+      setOrder(prev=>prev==='asc'?'desc':'asc')
+   } 
   const [searchTerm, setSearchTerm] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [subToDeleteId, setSubToDeleteId] = useState<string | null>(null);
-
   // --- Filtering and Pagination Logic (Strictly based on Image 1) ---
   const filteredData = searchTerm
     ? data.filter((item) => (searchFn ? searchFn(item, searchTerm) : true))
     : data;
+  
+      
+    // Toggle sorting order if same key clicked again
+    
+
+
+
 
   const itemsPerPage = 5; // As suggested by "Showing 1 to 5 of 10 results" in the image
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,7 +74,6 @@ const Table = <T extends object>({
   // --- Utility Functions ---
   const getStatusBadgeClass = (status: String) => {
     // Mapping colors strictly from the image
-    console.log(status);
     switch (status) {
       case "Active":
         return "bg-blue-100 text-blue-600 border border-blue-200"; // Light Blue/Cyan look
@@ -74,7 +91,7 @@ const Table = <T extends object>({
         return "bg-gray-100 text-gray-600 border border-gray-200";
     }
   };
-
+  
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Page Title and Description */}
@@ -105,7 +122,7 @@ const Table = <T extends object>({
       )}
       {description && <p className="text-gray-500 mb-6">{description}</p>}
       {/* Search Component */}
-      <FilterSort searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <FilterSort  searchTerm={searchTerm} setSearchTerm={setSearchTerm} haveFilter={haveFilter} haveExport={haveExport} haveSort={haveSort} filterFactors={filterFactors}/>
       {/* Table Card */}
       <div className="bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
@@ -124,8 +141,8 @@ const Table = <T extends object>({
 
             {/* Table Body */}
             <tbody>
-              {filteredData.length > 0 ? (
-                filteredData.map((item, rowIndex) => (
+              {currentData.length > 0 ? (
+                currentData.map((item, rowIndex) => (
                   <tr
                     key={rowIndex}
                     className="hover:bg-gray-50 cursor-pointer transition"
@@ -228,54 +245,8 @@ const Table = <T extends object>({
           </table>
         </div>
         {/* Table Footer (Pagination and result count) */}
-        <div className="flex justify-between items-center px-6 py-4 border-t border-gray-100 bg-white rounded-b-lg">
-          <span className="text-sm text-gray-600">
-            Showing {Math.min(startIndex + 1, totalResults)} to {endIndex} of{" "}
-            {totalResults} results
-          </span>
-          <div className="join grid grid-cols-2">
-            <button
-              className="join-item btn btn-outline"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              // disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="1"
-              checked={true}
-            />
-            <input
-              className="join-item btn btn-square "
-              type="radio"
-              name="options"
-              aria-label="2"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="3"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="4"
-            />{" "}
-            <button
-              className="join-item btn btn-outline"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              // disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
+        <div>
+          <Pagination setCurrentPage={setCurrentPage} totalResults={totalResults} totalPages={totalPages} currentPage={currentPage} pageSize={5} endIndex={endIndex} startIndex={startIndex}  />
         </div>
       </div>
     </div>

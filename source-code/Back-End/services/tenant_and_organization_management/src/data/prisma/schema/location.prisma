@@ -1,0 +1,14 @@
+model Location {
+    id         Int      @id @default(autoincrement())
+    country    String? // Country of the tenant
+    city       String? // City of the tenant
+    state      String? // State or region
+    street     String? // 
+    postalCode String? // Postal or ZIP code
+    Tenant     Tenant[]
+    Division  Division[]
+
+    // Metadata fields for auditing and soft deletion
+    createdAt DateTime   @default(now()) // Timestamp for when the tenant was created
+    updatedAt DateTime   @updatedAt // Automatically updated when the tenant is updated
+}

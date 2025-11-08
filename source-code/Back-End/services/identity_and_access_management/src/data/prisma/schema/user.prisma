@@ -1,18 +1,19 @@
 // tenant.prisma
 model User {
-    id       Int @id @default(autoincrement()) // Unique ID for each user
-    tenantId Int // Foreign key to the Tenant model
+    id               Int @id @default(autoincrement()) // Unique ID for each user
+    tenantDivisionId Int // Foreign key to the Tenant model
+    roleId    Int // ✅ add this
 
     // User attributes
-    username String @unique // Username of the user
-    email    String @unique // email address of the user
-    name     String // Name of the user
-    password String // password of the user
+    email     String @unique // email address of the user
+    firstName String // Name of the user
+    lastName  String // Name of the user
+    password  String // password of the user
 
     // optional attributes
     phone           String? // phone number of the user
     address         String? // address of the user
-    sex             String? // sex of the user
+    gender          String? // sex of the user
     birthday        DateTime? // birthday of the user
     profileImageUrl String? // avatar of the user
 
@@ -20,16 +21,12 @@ model User {
     refreshToken String?
 
     // User roles
-     userRole        String?   // e.g., "ADMIN", "INSTRUCTOR", "STUDENT"
-     permissions     Json?     // Store as JSON array 
+    permissions Json? // Store as JSON array 
+    userRole    String?
+
+    role      Role      @relation(fields: [roleId], references: [id]) // ✅ direct relation
     // Timestamps
-    createdAt DateTime @default(now()) // Timestamp for when the division was created
-    updatedAt DateTime @updatedAt // Automatically updated when the division is updated
-
-    // Relations
-    Tenant Tenant @relation(fields: [tenantId], references: [id])
-
-    // Unique constraints
-    @@unique([tenantId, email])
-    @@unique([tenantId, username])
+    createdAt DateTime   @default(now()) // Timestamp for when the division was created
+    updatedAt DateTime   @updatedAt // Automatically updated when the division is updated
+    userRoles userRole[]
 }

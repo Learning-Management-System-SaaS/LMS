@@ -5,7 +5,7 @@ import { createUserDTO, userResponseDTO, updateUserDTO } from "../interfaces/use
 import { handleControllerError } from "../utils/handleContollerErrors";
 import { createResponseObject } from "../utils/createResponseObject";
 import { customRequest } from "../interfaces";
-import { getHashPassword } from "../utils/verifyPassword";
+import { getHashedPassword } from "../utils/verifyPassword";
 
 // Instantiate the user service
 const userService = new UserService();
@@ -69,7 +69,7 @@ export const getUserById = async (req: customRequest, res: Response): Promise<Re
     const tenantId = req.user?.tenantId!;
 
     // Call the database service to get the user by ID
-    const user = await userService.getUserById({ userId, tenantId });
+    const user = await userService.getUserById({ userId });
 
     // Respond with the user data if found
     return res.status(200).json(createResponseObject<userResponseDTO>({ data: user }));
@@ -91,7 +91,7 @@ export const createUser = async (req: customRequest, res: Response): Promise<Res
     const requestBody: createUserDTO = req.body;
 
     // Hash the user's password
-    requestBody.password = await getHashPassword(requestBody.password);
+    requestBody.password = await getHashedPassword(requestBody.password);
 
     // Call the database service to create a new user
     const newUser = await userService.createUser(requestBody);

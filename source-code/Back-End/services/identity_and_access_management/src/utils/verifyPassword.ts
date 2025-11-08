@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { HttpError } from "../errors/httpError";
 import { SALT_ROUNDS } from "../config/constants";
 
-export const getHashPassword = async (password: string) => {
+export const getHashedPassword = async (password: string) => {
   try {
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
     return hash;

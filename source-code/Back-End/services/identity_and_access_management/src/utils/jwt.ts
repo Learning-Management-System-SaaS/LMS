@@ -64,8 +64,7 @@ export const generateToken = ({ user, secret, expiresIn = JWT_EXPIRES.LONG }: { 
     const token = jwt.sign(
       {
         id: user.id,
-         tenantId: user.tenantId ?? null,
-    userRole: user.userRole ?? null,
+        userRole: user.userRole ?? null,
         permissions: user.permissions,
       },
       secret,
