@@ -6,7 +6,7 @@
   "license": "ISC",
   "prisma": {
     "schema": "src/data/prisma/schema",
-    "seed": "ts-node ./prisma/seed.ts"
+    "seed": "ts-node src/data/prisma/seed.ts"
   },
   "scripts": {
     "build": "tsc",
@@ -33,6 +33,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@prisma/client": "^6.17.1",
     "all": "^0.0.0",
     "bcrypt": "^5.1.1",
