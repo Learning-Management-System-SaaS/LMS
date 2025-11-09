@@ -1,0 +1,27 @@
+model Enrollment {
+    id Int @id @default(autoincrement())
+    tenantDivisionId Int
+    userId Int
+    enrollmentType EnrollmentType
+    grade Decimal   @default(0.00)
+    progress    Decimal @default(0.00)
+    status  EnrollmentStatus
+   // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+}
+
+enum EnrollmentStatus {
+    ACTIVE
+    INACTIVE
+    PENDING
+    COMPLETED
+    DELETED
+    TRIAL
+}
+enum EnrollmentType {
+    CLASS
+    COURSE
+    SPECIALIZATION
+}

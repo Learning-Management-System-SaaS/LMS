@@ -1,0 +1,10 @@
+model Instructor {
+    userId               Int @unique
+    tenantDivisionId Int
+    courseId          Int
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+}
