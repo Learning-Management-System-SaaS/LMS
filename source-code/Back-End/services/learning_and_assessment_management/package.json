@@ -4,6 +4,9 @@
   "keywords": [],
   "author": "Musab Samani",
   "license": "ISC",
+  "prisma": {
+    "schema": "src/data/prisma/schema"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "nodemon src/index.ts",
@@ -25,12 +28,11 @@
     "@types/node": "^22.5.4",
     "@types/winston": "^2.4.4",
     "nodemon": "^3.1.4",
-    "prisma": "^5.19.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
+    "@prisma/client": "^6.17.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotnet": "^1.1.4",
@@ -39,6 +41,7 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "prisma": "^6.17.1",
     "winston": "^3.14.2"
   }
 }

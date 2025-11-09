@@ -1,0 +1,57 @@
+model Course {
+    id               Int          @id @default(autoincrement())
+    tenantDivisionId Int
+    title            String
+    description      String
+    status           CourseStatus
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    topics Topic[]
+}
+
+model Topic {
+    id               Int    @id @default(autoincrement())
+    tenantDivisionId Int
+    courseId         Int
+    title            String
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    contents Content[]
+    
+    //relation
+    course   Course    @relation(fields: [courseId], references: [id])
+}
+
+model Content {
+    id               Int    @id @default(autoincrement())
+    tenantDivisionId Int
+    topicId          Int
+    contentType      String
+    url              String
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    //relation
+    topic Topic @relation(fields: [topicId], references: [id])
+}
+
+model contentType {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+enum CourseStatus {
+    COMPLETED
+    PENDING
+}

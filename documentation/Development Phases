@@ -17,12 +17,14 @@ Tables: Tenant, Location, Division-Type         // done => 5/11
 
 
 Microservice 3: Subscription and Payment Service
-Tables: Subscription (trail), Plan (standard), Payment
+Tables: Subscription (trail), Plan (standard), Payment    // few steps need 
 
 
 Microservice 5: Messaging Service
 Tables: Message, Messages-Permissions
 
+**NOTES course progress table ??
+** Notes submitAt in Submission Table ?? 
 
 ---------------------------------------------------
 
@@ -30,7 +32,7 @@ Tables: Message, Messages-Permissions
 # Phase Two: Organization Administrator
 
 Micorservice 1: Subscription and Payment Service
-Tables: Plan, Subscription, Payment
+Tables: Plan, Subscription,Payment                    // done
 
 
 Microservice 2: User Services
@@ -38,7 +40,7 @@ Tables: User Account (dep-admin), add-permissions to roles
 
 
 Microservice 3: Tenant and Division Management
-Tables: Divisions, Tenant-Divisions
+Tables: Divisions, Tenant-Divisions             // done
 
 
 Microservice 4: Messaging Service

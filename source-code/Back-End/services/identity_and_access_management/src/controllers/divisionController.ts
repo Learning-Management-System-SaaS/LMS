@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { DivisionService } from "../services/divisionService";
-import { createDivisionRequestDTO, divisionExtendedResponseDTO, divisionResponseDTO, updateDivisionDTO } from "../interfaces/divisions";
+import { createDivisionRequestDTO, divisionResponseDTO, updateDivisionDTO } from "../interfaces/divisions";
 import { handleControllerError } from "../utils/handleContollerErrors";
 import { createResponseObject } from "../utils/createResponseObject";
 import { customRequest } from "../interfaces";

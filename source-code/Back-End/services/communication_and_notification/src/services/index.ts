@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient, Tenant } from "@prisma/client";
+import { PrismaClient, Tenant } from "@prisma/client";
 import { HttpError } from "../errors/httpError";
 import { createTenantData, updateTenantDTO } from "../interfaces";
 import { tenantResponseDTO } from "../interfaces";
