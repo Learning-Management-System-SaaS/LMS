@@ -3,8 +3,9 @@ model Subscription {
     susbscriptonStatus SubscriptionStatus
     plan_id            Int
 
-    plan   Plan     @relation(fields: [plan_id], references: [id])
-    Tenant Tenant[]
+    plan     Plan      @relation(fields: [plan_id], references: [id])
+    Tenant   Tenant[]
+    payments Payment[]
 }
 
 model Plan {
@@ -14,6 +15,26 @@ model Plan {
     billingCycle String
     currency     String
     Subscription Subscription[]
+}
+
+model Payment {
+    id             Int           @id @default(autoincrement())
+    tenantId       Int
+    subscriptionId Int
+    status         PaymentStatus
+    paymentMethod  String
+    cardNumber     Int
+
+    tenant       Tenant       @relation(fields: [tenantId], references: [id])
+    subscription Subscription @relation(fields: [subscriptionId], references: [id])
+}
+
+enum PaymentStatus {
+    COMPLETED
+    FAILED 
+    PENDING
+    REFUNDED
+    CANCELLED
 }
 
 // Enum to track subscription status

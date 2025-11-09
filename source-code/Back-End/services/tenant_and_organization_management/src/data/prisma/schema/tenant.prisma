@@ -9,10 +9,9 @@ model Tenant {
     subscripton_id Int // Enum to track subscription type
 
     // Optional Tenant details
-    email    String?    @unique // The primary email of the tenant (organization)
-    phone    String?    @unique // The primary phone number of the tenant (organization)
-    domain   String?    @unique // Tenant's website (optional)
-
+    email  String? @unique // The primary email of the tenant (organization)
+    phone  String? @unique // The primary phone number of the tenant (organization)
+    domain String? @unique // Tenant's website (optional)
 
     // Metadata fields for auditing and soft deletion
     createdAt DateTime @default(now()) // Timestamp for when the tenant was created
@@ -22,4 +21,5 @@ model Tenant {
     location     Location     @relation(fields: [location_id], references: [id])
     subscription Subscription @relation(fields: [subscripton_id], references: [id])
     // An array of Division objects representing all top level divisions under the tenant.
+    payments     Payment[]
 }
