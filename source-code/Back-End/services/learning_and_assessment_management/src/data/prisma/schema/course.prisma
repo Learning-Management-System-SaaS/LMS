@@ -3,6 +3,7 @@ model Course {
     tenantDivisionId Int
     title            String
     description      String
+    imageUrl         String?
     status           CourseStatus
 
     // Timestamps
@@ -19,12 +20,12 @@ model Topic {
     title            String
 
     // Timestamps
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    contents Content[]
-    
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    contents  Content[]
+
     //relation
-    course   Course    @relation(fields: [courseId], references: [id])
+    course Course @relation(fields: [courseId], references: [id])
 }
 
 model Content {
@@ -49,6 +50,13 @@ model contentType {
     // Timestamps
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+enum ContentTypeEnum {
+    VIDEO
+    PDF
+    QUIZ
+    TEXT
 }
 
 enum CourseStatus {

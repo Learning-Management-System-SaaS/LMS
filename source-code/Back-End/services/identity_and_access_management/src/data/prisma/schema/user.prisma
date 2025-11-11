@@ -2,7 +2,7 @@
 model User {
     id               Int @id @default(autoincrement()) // Unique ID for each user
     tenantDivisionId Int // Foreign key to the Tenant model
-    roleId    Int // ✅ add this
+    roleId           Int // ✅ add this
 
     // User attributes
     email     String @unique // email address of the user
@@ -24,9 +24,10 @@ model User {
     permissions Json? // Store as JSON array 
     userRole    String?
 
-    role      Role      @relation(fields: [roleId], references: [id]) // ✅ direct relation
     // Timestamps
     createdAt DateTime   @default(now()) // Timestamp for when the division was created
     updatedAt DateTime   @updatedAt // Automatically updated when the division is updated
+    
+    role      Role       @relation(fields: [roleId], references: [id]) // ✅ direct relation
     userRoles userRole[]
 }

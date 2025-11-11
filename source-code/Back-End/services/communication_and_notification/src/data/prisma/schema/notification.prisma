@@ -1,0 +1,40 @@
+model Notification {
+    id               Int       @id @default(autoincrement())
+    tenantDivisionId Int
+    userId           Int
+    templateId       Int?
+    title            String
+    message          String
+    type             String // e.g., "ORDER_PLACED"
+    channel          String // e.g., "email", "in_app"
+    status           String    @default("pending") // "pending", "sent", "read"
+    createdAt        DateTime  @default(now())
+    readAt           DateTime?
+    sentAt           DateTime?
+
+    // Relations
+    Template NotificationTemplate? @relation(fields: [templateId], references: [id])
+}
+
+model NotificationTemplate {
+    id        Int      @id @default(autoincrement())
+    name      String   @unique // e.g., "order_confirmation"
+    title     String // e.g., "Your Order is Confirmed!"
+    body      String // e.g., "Hello {{userName}}, your order {{orderId}}..."
+    type      String // e.g., "ORDER_PLACED"
+    channel   String // e.g., "email" or "in_app"
+    createdAt DateTime @default(now())
+
+    notifications Notification[]
+}
+
+model NotificationPreference {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    channel   String // "email", "in_app", "push", "sms"
+    enabled   Boolean  @default(true) // true = user wants notifications
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([userId, channel]) // Each user has one preference per channel
+}

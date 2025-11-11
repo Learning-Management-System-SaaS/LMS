@@ -18,8 +18,25 @@ model Tenant {
     updatedAt DateTime @updatedAt // Automatically updated when the tenant is updated
 
     // Relationships
-    location     Location     @relation(fields: [location_id], references: [id])
-    subscription Subscription @relation(fields: [subscripton_id], references: [id])
+    location        Location         @relation(fields: [location_id], references: [id])
+    subscription    Subscription     @relation(fields: [subscripton_id], references: [id])
     // An array of Division objects representing all top level divisions under the tenant.
-    payments     Payment[]
+    payments        Payment[]
+    tenantDivisions TenantDivision[]
+}
+
+model TenantDivision {
+    id         Int @id @default(autoincrement())
+    tenantId   Int
+    divisionId Int
+
+    // Metadata fields for auditing and soft deletion
+    createdAt DateTime @default(now()) // Timestamp for when the tenant was created
+    updatedAt DateTime @updatedAt // Automatically updated when the tenant is updated
+    
+    // relation 
+    tenant   Tenant   @relation(fields: [tenantId], references: [id])
+    division Division @relation(fields: [divisionId], references: [id])
+
+
 }
