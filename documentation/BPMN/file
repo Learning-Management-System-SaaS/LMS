@@ -1,1 +1,13 @@
+# LMS Process:
+- Authentications Service. (done)
+- User Service. (done)
+- Subscription and Payment Service. (done)
+- Tenant Service. (done)
+- Course Creation and Management.
+- Enrollment Process.
+- Content Service.
+- Assessment and Evaluation service.
+- Notifications Service.
+- Message Service.
+- Event Service.
 
