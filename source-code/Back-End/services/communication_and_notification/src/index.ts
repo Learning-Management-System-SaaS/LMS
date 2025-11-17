@@ -5,7 +5,8 @@ import { logging } from "./startup/logging";
 import { database } from "./startup/database";
 import { production } from "./startup/production";
 import { routes } from "./startup/routes";
-
+import { configDotenv } from "dotenv";
+configDotenv();
 const app: Application = express();
 const PORT = Number(process.env.CURRENT_SERVICE_PORT) || 3000;
 const SERVICE_NAME = process.env.CURRENT_SERVICE_NAME;

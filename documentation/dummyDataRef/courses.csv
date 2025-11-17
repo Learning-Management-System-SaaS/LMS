@@ -1,0 +1,11 @@
+id,tenantDivisionId,title,description,imageUrl,status,createdAt,updatedAt
+1,2,Web Development Fundamentals 1,Essential skills in HTML5, CSS3, and JavaScript basics.,https://cdn.lms.co/img/web_fundamentals_1.png,PENDING,2025-01-15T07:46:51Z,2025-11-02T05:46:51Z
+2,2,Cloud Architecture with AWS 2,Designing and deploying scalable applications on Amazon Web Services.,https://cdn.lms.co/img/aws_architecture_2.png,COMPLETED,2024-06-28T07:46:51Z,2025-04-29T05:46:51Z
+3,1,Data Science: Deep Dive in AI 3,Advanced techniques in machine learning and neural networks.,https://cdn.lms.co/img/ai_deepdive_3.png,PENDING,2024-06-17T07:46:51Z,2025-08-27T10:46:51Z
+4,2,Web Development Fundamentals 4,Essential skills in HTML5, CSS3, and JavaScript basics.,https://cdn.lms.co/img/web_fundamentals_4.png,COMPLETED,2025-08-07T07:46:51Z,2025-10-13T16:46:51Z
+5,3,Cloud Architecture with AWS 5,Designing and deploying scalable applications on Amazon Web Services.,https://cdn.lms.co/img/aws_architecture_5.png,PENDING,2024-11-12T07:46:51Z,2025-10-17T05:46:51Z
+6,1,Data Science: Deep Dive in AI 6,Advanced techniques in machine learning and neural networks.,https://cdn.lms.co/img/ai_deepdive_6.png,COMPLETED,2024-11-12T07:46:51Z,2025-04-22T13:46:51Z
+7,3,Web Development Fundamentals 7,Essential skills in HTML5, CSS3, and JavaScript basics.,https://cdn.lms.co/img/web_fundamentals_7.png,PENDING,2024-09-18T07:46:51Z,2025-04-14T16:46:51Z
+8,1,Cloud Architecture with AWS 8,Designing and deploying scalable applications on Amazon Web Services.,https://cdn.lms.co/img/aws_architecture_8.png,COMPLETED,2025-01-27T07:46:51Z,2025-11-02T15:46:51Z
+9,2,Data Science: Deep Dive in AI 9,Advanced techniques in machine learning and neural networks.,https://cdn.lms.co/img/ai_deepdive_9.png,PENDING,2025-04-08T07:46:51Z,2025-08-12T10:46:51Z
+10,3,Web Development Fundamentals 10,Essential skills in HTML5, CSS3, and JavaScript basics.,https://cdn.lms.co/img/web_fundamentals_10.png,COMPLETED,2025-01-18T07:46:51Z,2025-05-24T01:46:51Z

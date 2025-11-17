@@ -11,11 +11,12 @@ model Division {
 
     // Relations
     // An optional self-relation where a Division can have a parent Division.
-    parent       Division?    @relation("DivisionHierarchy", fields: [parent_id], references: [id])
+    parent          Division?        @relation("DivisionHierarchy", fields: [parent_id], references: [id])
     // An array of Division objects representing all the child divisions under a parent Division.
-    children     Division[]   @relation("DivisionHierarchy")
-    location     Location     @relation(fields: [location_id], references: [id])
-    divisionType DivisionType @relation(fields: [divisionType_id], references: [id])
+    children        Division[]       @relation("DivisionHierarchy")
+    location        Location         @relation(fields: [location_id], references: [id])
+    divisionType    DivisionType     @relation(fields: [divisionType_id], references: [id])
+    tenantDivisions TenantDivision[]
 }
 
 model DivisionType {
