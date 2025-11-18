@@ -30,7 +30,7 @@ export interface HealthCheckResponse {
 export interface customRequest extends Request {
   user?: {
     // The tenant ID of the authenticated user
-    tenantId: number;
+    tenantDivisionId: number;
 
     // The JWT token of the authenticated user
     token: string;

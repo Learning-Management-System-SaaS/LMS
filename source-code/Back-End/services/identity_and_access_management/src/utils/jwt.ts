@@ -55,7 +55,7 @@ export const verifyToken = ({ token, secret }: { token: string; secret: string |
  * @returns {string} the generated JWT token
  * @throws {HttpError} if the JWT secret is missing in environment variables, or if there is an error generating the token
  */
-export const generateToken = ({ user, secret, expiresIn = JWT_EXPIRES.LONG }: { user: userResponseDTO; secret: string | undefined; expiresIn?: JwtExpiresValues }): string => {
+export const generateToken = ({ user, secret, expiresIn = JWT_EXPIRES.MEDIUM }: { user: userResponseDTO; secret: string | undefined; expiresIn?: JwtExpiresValues }): string => {
   if (!secret) {
     throw new HttpError({ message: "JWT secret is missing in environment variables", statusCode: 500 });
   }

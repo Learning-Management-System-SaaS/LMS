@@ -5,9 +5,8 @@ const userRequiredFields = {
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   // Prohibits '@' in username
-  username: Joi.string()
-    .pattern(/^[^@]*$/)
-    .required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
   password: Joi.string().min(6).required(),
 };
 
@@ -55,7 +54,13 @@ export const updateUserSchema = Joi.object({
  * This schema is used by the controller to validate the request body when logging in a user.
  */
 export const loginUserSchema = Joi.object({
-  //tenantId: userRequiredFields,
-  emailOrUsername: Joi.alternatives().try(userRequiredFields.email, userRequiredFields.username).required().label("Email or Username"),
+  email: userRequiredFields.email,
   password: userRequiredFields.password,
 });
+export const signupUserSchema = Joi.object({
+  tenantId: userRequiredFields,
+  email: userRequiredFields.email,
+  password: userRequiredFields.password,
+  firstName:userRequiredFields.firstName,
+  lastName:userRequiredFields.lastName,
+})

@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { router as healthCheckEndPoint } from "./healthCheckEndPoint";
 import { authMiddleware } from "../middlewares/authMiddleware";
-import { router as userRouter } from "./userRouter";
-import { router as authRouter } from "./authRouter";
+import userRouter from "./userRouter";
+import authRouter  from "./authRouter";
+import roleRouter from "./roleRouter"
+import permissionRouter from "./permissionRouter"
 
 /**
  * Express router to handle user-related routes. *
@@ -12,9 +14,10 @@ import { router as authRouter } from "./authRouter";
 const router: Router = Router();
 
 router.use("/users", userRouter);
+router.use("/role", roleRouter);
+router.use("/permission", permissionRouter);
 
 router.use("/auth", authRouter);
-
 router.use(healthCheckEndPoint);
 
 export { router };

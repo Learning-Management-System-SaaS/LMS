@@ -1,7 +1,7 @@
 // user.prisma
 model User {
     id               Int @id @default(autoincrement()) // Unique ID for each user
-    tenantDivisionId Int // Foreign key to the Tenant model
+    tenantDivisionId Int? // Foreign key to the Tenant model
     roleId           Int // ✅ add this
 
     // User attributes

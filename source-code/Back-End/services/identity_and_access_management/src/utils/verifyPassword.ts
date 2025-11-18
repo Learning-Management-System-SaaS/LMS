@@ -14,6 +14,7 @@ export const getHashedPassword = async (password: string) => {
 export const isValidPassword = async (password: string, hashedPassword: string) => {
   try {
     const match = await bcrypt.compare(password, hashedPassword);
+
     if (match) {
       return true;
     } else {
