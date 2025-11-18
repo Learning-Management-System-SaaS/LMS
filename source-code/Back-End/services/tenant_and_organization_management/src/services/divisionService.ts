@@ -93,12 +93,12 @@ export class DivisionService {
 
   /**
    * Retrieves tenant's division hierarchy as a nested structure of divisions
-   * @param {number} tenantId The ID of the tenant to retrieve its hierarchy
+   * @param {number} tenantDivisionId The ID of the tenant to retrieve its hierarchy
    * @returns {Promise<divisionExtendedResponseDTO[] | never>} The division's hierarchy if found, otherwise throws an error
    */
-  public async getTenantDivisionHierarchy(tenantId: number): Promise<divisionResponseDTO[] | never> {
+  public async getTenantDivisionHierarchy(tenantDivisionId: number): Promise<divisionResponseDTO[] | never> {
     // Retrieve the tenant's divisions as a list
-    const divisions = await this.getTenantDivisionList(tenantId);
+    const divisions = await this.getTenantDivisionList(tenantDivisionId);
 
     // Convert the flat list of divisions into a nested structure
     return divisionListToHierarchy(divisions);
@@ -106,16 +106,16 @@ export class DivisionService {
 
   /**
    * Retrieves tenant's all subdivision as a list
-   * @param tenantId The ID of the specified tenant
+   * @param tenantDivisionId The ID of the specified tenant
    * @returns The tenant's subdivisions if found, otherwise throws an error
    */
-  public async getTenantDivisionList(tenantId: number): Promise<divisionResponseDTO[] | never> {
+  public async getTenantDivisionList(tenantDivisionId: number): Promise<divisionResponseDTO[] | never> {
     try {
       // check if tenant exists
-      await this.isTenantExists({ id: tenantId });
+      await this.isTenantExists({ id: tenantDivisionId });
 
       // Retrieve all divisions related to the tenant
-      const divisions = await prisma.division.findMany({ where: { tenantId } });
+      const divisions = await prisma.division.findMany({ where: { tenantDivisionId } });
 
       // check if divisions exist
       if (!divisions) throw new HttpError({ message: "Divisions not found", statusCode: 404 });
@@ -131,12 +131,12 @@ export class DivisionService {
    * @param divisionId The ID of the division to retrieve
    * @returns The division if found, otherwise throws a 404 error
    */
-  public async getDivisionById({ divisionId, tenantId }: { tenantId: number; divisionId: number }): Promise<divisionResponseDTO | never> {
+  public async getDivisionById({ divisionId, tenantDivisionId }: { tenantDivisionId: number; divisionId: number }): Promise<divisionResponseDTO | never> {
     try {
       // check if tenant exists
-      await this.isTenantExists({ id: tenantId });
+      await this.isTenantExists({ id: tenantDivisionId });
 
-      const division = await this.isDivisionExists({ divisionId, tenantId });
+      const division = await this.isDivisionExists({ divisionId, tenantDivisionId });
 
       return division;
     } catch (error) {
@@ -153,9 +153,9 @@ export class DivisionService {
     try {
       // check if tenant exists
       await this.isTenantExists({
-        id: data.tenantId,
+        id: data.tenantDivisionId,
         errorOptions: {
-          message: `Invalid data: Tenant with id: ${data.tenantId} not found`,
+          message: `Invalid data: Tenant with id: ${data.tenantDivisionId} not found`,
           statusCode: 400,
         },
       });
@@ -165,10 +165,10 @@ export class DivisionService {
 
       // get parent division
       if (data.parentId) {
-        parentDivision = await prisma.division.findUnique({ where: { tenantId: data.tenantId, id: data.parentId } });
+        parentDivision = await prisma.division.findUnique({ where: { tenantDivisionId: data.tenantDivisionId, id: data.parentId } });
 
         // check if parent division exists
-        if (!parentDivision) throw new HttpError({ message: `Foreign key constraint failed: Parent division not found with id: ${data.parentId} and tenantId: ${data.tenantId}`, statusCode: 400 });
+        if (!parentDivision) throw new HttpError({ message: `Foreign key constraint failed: Parent division not found with id: ${data.parentId} and tenantId: ${data.tenantDivisionId}`, statusCode: 400 });
       }
       return await prisma.division.create({ data });
     } catch (error) {
@@ -188,9 +188,9 @@ export class DivisionService {
       await this.isTenantExists({ id: data.tenantId });
 
       // Check if the record does not exists
-      const existingDivision = await prisma.division.findUnique({ where: { id: data.id, tenantId: data.tenantId } });
+      const existingDivision = await prisma.division.findUnique({ where: { id: data.id, tenantDivisionId: data.tenantId } });
       if (!existingDivision) {
-        throw new HttpError({ message: `Division with id: ${data.id} and Tenant id: ${data.tenantId} not found`, statusCode: 404 });
+        throw new HttpError({ message: `Division with id: ${data.id} and Tenant id: ${data.tenantDivisionId} not found`, statusCode: 404 });
       }
 
       // Check if the record has not been modified by another process
@@ -199,7 +199,7 @@ export class DivisionService {
       }
 
       const { updatedAt, ...newdata } = { ...data };
-      const updatedDivision = await prisma.division.update({ where: { id: data.id, tenantId: data.tenantId }, data: newdata });
+      const updatedDivision = await prisma.division.update({ where: { id: data.id, tenantDivisionId: data.tenantDivisionId }, data: newdata });
 
       return updatedDivision;
     } catch (error) {
@@ -212,15 +212,15 @@ export class DivisionService {
    * @param divisionId The ID of the division to delete
    * @returns The deleted division if successful, otherwise throws an error
    */
-  public async deleteDivision({ tenantId, divisionId }: { tenantId: number; divisionId: number }): Promise<Division | never> {
+  public async deleteDivision({ tenantDivisionId, divisionId }: { tenantDivisionId: number; divisionId: number }): Promise<Division | never> {
     try {
       // check if tenant exists
-      await this.isTenantExists({ id: tenantId });
+      await this.isTenantExists({ id: tenantDivisionId });
 
-      const deletedDivision = await prisma.division.delete({ where: { id: divisionId, tenantId } });
+      const deletedDivision = await prisma.division.delete({ where: { id: divisionId, tenantDivisionId } });
 
       // Check if the record does not exists
-      if (!deletedDivision) throw new HttpError({ message: `Division with id: ${divisionId} and Tenant id: ${tenantId} not found`, statusCode: 404 });
+      if (!deletedDivision) throw new HttpError({ message: `Division with id: ${divisionId} and Tenant id: ${tenantDivisionId} not found`, statusCode: 404 });
 
       // return deleted division
       return deletedDivision;
@@ -247,12 +247,12 @@ export class DivisionService {
       });
   }
 
-  private async isDivisionExists({ divisionId, tenantId }: { divisionId: number; tenantId: number }) {
+  private async isDivisionExists({ divisionId, tenantDivisionId }: { divisionId: number; tenantDivisionId: number }) {
     // Retrieve the division
-    const division = await prisma.division.findUnique({ where: { id: divisionId, tenantId } });
+    const division = await prisma.division.findUnique({ where: { id: divisionId, tenantDivisionId } });
 
     // check if division exists
-    if (!division) throw new HttpError({ message: `Division with id: ${divisionId} and Tenant id: ${tenantId} not found`, statusCode: 404 });
+    if (!division) throw new HttpError({ message: `Division with id: ${divisionId} and Tenant id: ${tenantDivisionId} not found`, statusCode: 404 });
 
     return division;
   }

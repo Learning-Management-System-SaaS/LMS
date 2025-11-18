@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
- previewFeatures = ["prismaSchemaFolder"]
+  previewFeatures = ["prismaSchemaFolder"]
 }
 
 datasource db {
@@ -8,3 +8,4 @@ datasource db {
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+

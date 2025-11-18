@@ -14,5 +14,5 @@ export type subscriptionFieldsUnion = "subscriptionType" | "subscriptionStatus" 
  * Object type representing only subscription-related fields from `Tenant` and mark them as optional
  */
 export type subscriptionFieldsOptional = {
-  [P in subscriptionFieldsUnion]?: Tenant[P];
+  [K in subscriptionFieldsUnion]?: K extends keyof Tenant ? Tenant[K] : unknown;
 };

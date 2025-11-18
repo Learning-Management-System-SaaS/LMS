@@ -48,7 +48,9 @@ export interface divisionExtendedResponseDTO extends Division {
  *
  * It excludes fields such as `id`, `version`, and auditing fields (`createdAt`, `updatedAt`) as they are auto-generated.
  */
-export interface createDivisionData extends Omit<divisionDataWithoutAudit, "id" | "version"> {}
+export interface createDivisionData extends Omit<divisionDataWithoutAudit, "id" | "version"> {
+  tenantId: number;
+}
 
 /**
  * Interface for creating a division used by the backend controller for the request body.

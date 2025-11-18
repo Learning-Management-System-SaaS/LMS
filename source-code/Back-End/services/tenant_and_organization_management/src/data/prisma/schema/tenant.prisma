@@ -5,8 +5,8 @@ model Tenant {
 
     // Required Tenant details
     name           String // Name of the tenant (organization)
-    location_id    Int // Address of the tenant's organization
-    subscripton_id Int // Enum to track subscription type
+    locationId    Int // Address of the tenant's organization
+    subscriptonId Int // Enum to track subscription type
 
     // Optional Tenant details
     email  String? @unique // The primary email of the tenant (organization)
@@ -18,9 +18,8 @@ model Tenant {
     updatedAt DateTime @updatedAt // Automatically updated when the tenant is updated
 
     // Relationships
-    location        Location         @relation(fields: [location_id], references: [id])
-    subscription    Subscription     @relation(fields: [subscripton_id], references: [id])
-    // An array of Division objects representing all top level divisions under the tenant.
+    location        Location         @relation(fields: [locationId], references: [id])
+    subscription    Subscription     @relation(fields: [subscriptonId], references: [id])
     payments        Payment[]
     tenantDivisions TenantDivision[]
 }
@@ -33,10 +32,8 @@ model TenantDivision {
     // Metadata fields for auditing and soft deletion
     createdAt DateTime @default(now()) // Timestamp for when the tenant was created
     updatedAt DateTime @updatedAt // Automatically updated when the tenant is updated
-    
+
     // relation 
     tenant   Tenant   @relation(fields: [tenantId], references: [id])
     division Division @relation(fields: [divisionId], references: [id])
-
-
 }

@@ -1,9 +1,10 @@
 model Division {
     id              Int     @id @default(autoincrement()) // Unique ID for each division
-    parent_id       Int? // Nullable to represent root divisions
-    location_id     Int
+    tenantDivisionId        Int     // Tenant ID for multi-tenancy
+    parentId       Int // Nullable to represent root divisions
+    locationId     Int
     name            String // Name of the division
-    divisionType_id Int
+    divisionTypeId Int
     description     String? // Description of the division
 
     createdAt DateTime @default(now()) // Timestamp for when the division was created
@@ -11,12 +12,14 @@ model Division {
 
     // Relations
     // An optional self-relation where a Division can have a parent Division.
-    parent          Division?        @relation("DivisionHierarchy", fields: [parent_id], references: [id])
+    parent          Division?        @relation("DivisionHierarchy", fields: [parentId], references: [id])
     // An array of Division objects representing all the child divisions under a parent Division.
     children        Division[]       @relation("DivisionHierarchy")
-    location        Location         @relation(fields: [location_id], references: [id])
-    divisionType    DivisionType     @relation(fields: [divisionType_id], references: [id])
-    tenantDivisions TenantDivision[]
+    location        Location         @relation(fields: [locationId], references: [id])
+    divisionType    DivisionType     @relation(fields: [divisionTypeId], references: [id])
+    tenantDivisions TenantDivision[] 
+
+    //@@unique([id, tenantId])
 }
 
 model DivisionType {
