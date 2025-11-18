@@ -1,0 +1,18 @@
+syntax = "proto4"
+
+package tenant;
+
+service TenantService {
+    // by passing tenantDivisionId return the Id of Tenant and Division that user assoiciate with 
+    rpc getTenantDivionIds(IdRequest) returns (IdResponse);
+}
+
+message IdRequest {
+    int32 id = 1;
+}
+
+message IdResponse {
+    int32 id = 1;
+    int32 tenantId = 2;
+    int32 divisionId = 3;
+}

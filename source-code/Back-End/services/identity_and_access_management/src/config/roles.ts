@@ -1,7 +1,10 @@
 // Export all permissions together for easy access
 export const ROLES = {
-  SAAS_OWNER: "saas_owner",
+  SAAS_OWNER: "admin",
+  TENANT_OWNER:"tadmin",
+  DIVISION_ADMIN:"dadmin",
   INSTRUCTOR: "instructor",
+  STUDENT:"student",
   USER: "user",
 };
 // Create a union type for permissions based on PERMISSIONS values

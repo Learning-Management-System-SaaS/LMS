@@ -11,12 +11,12 @@ import { apiUrls } from "../config";
  * @returns A Promise that resolves if the tenant exists, otherwise rejects with an HttpError
  * @throws HttpError if the tenant ID is invalid or the tenant does not exist
  */
-export const isValidTenantId = async (tenantId: number, token: string, isSaasOwner?: boolean): Promise<void> => {
-  if (!tenantId) {
+export const isValidTenantId = async (tenantDivisionId: number, token: string, isSaasOwner?: boolean): Promise<void> => {
+  if (!tenantDivisionId) {
     throw new HttpError({ message: `Missing tenant ID in the ${isSaasOwner ? "request body" : "authentication token"}`, statusCode: 401 });
   }
 
-  if (isNaN(Number(tenantId))) {
+  if (isNaN(Number(tenantDivisionId))) {
     throw new HttpError({ message: `Invalid tenant ID in the ${isSaasOwner ? "request body" : "authentication token"}`, statusCode: 401 });
   }
   // const tenantBaseUrl = process.env.TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE_URL;
@@ -26,7 +26,7 @@ export const isValidTenantId = async (tenantId: number, token: string, isSaasOwn
     throw new HttpError({ message: "TENANT_AND_ORGANIZATION_MANAGEMENT_SERVICE URL is missing", statusCode: 500 });
   }
 
-  const url = `${tenantBaseUrl}/api/v1/tenants/${tenantId}`;
+  const url = `${tenantBaseUrl}/api/v1/tenants/${tenantDivisionId}`;
   try {
     const { data } = await axios.get(url, {
       headers: { Authorization: `Bearer ${token}` },

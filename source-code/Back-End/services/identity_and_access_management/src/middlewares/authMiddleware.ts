@@ -6,12 +6,9 @@ import { HttpError } from "../errors/httpError";
 import { customRequest } from "../interfaces";
 import { ROLES } from "../config/roles";
 
-export const authMiddleware = async (req: customRequest, res: Response, next: NextFunction) => 
-   {
-    // req.user = req.headers.user ? JSON.parse(req.headers.user as string) : null;
-
-    const token = extractTokenFromHeader(req);
-    console.log("[authMiddleware] headers:", req.headers);
+export const authMiddleware = async (req: customRequest, res: Response, next: NextFunction) => {
+   
+    const token = req.cookies.auth_token
 
 try {
     const decodedToken = verifyToken({
@@ -21,18 +18,18 @@ try {
 
     
     // Determine where the tenantId should come from based on the user role
-    const tenantId = decodedToken.userRole === ROLES.SAAS_OWNER ? req.body.tenantId : decodedToken.tenantId;
+    const tenantDivisionId = decodedToken.userRole === ROLES.SAAS_OWNER ? "" : decodedToken.tenantDivisionId;
 
     // // check the tenantId if user is not a saasOwner
-    // if (decodedToken.userRole !== ROLES.SAAS_OWNER) {
-    //   await isValidTenantId(tenantId, token);
-    // }
+    if (decodedToken.userRole !== ROLES.SAAS_OWNER) {
+      await isValidTenantId(tenantDivisionId, token);
+    }
 
     // // check the tenantId if it is present in the request body and user is saasOwner
     // if (decodedToken.userRole === ROLES.SAAS_OWNER && req.body.tenantId) {
     //   await isValidTenantId(tenantId, token, true);
     // }
-    req.user = { tenantId: Number(tenantId), userRole: decodedToken.userRole, permissions: decodedToken.permissions, token };
+    req.user = { tenantDivisionId: Number(tenantDivisionId), userRole: decodedToken.userRole, permissions: decodedToken.permissions, token };
 
     return next(); // Pass control to the next middleware/handler
   } catch (error) {

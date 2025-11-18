@@ -29,7 +29,7 @@ const router: Router = Router();
 
 
 // apply auth middleware
-// router.use(authMiddleware);
+router.use(authMiddleware);
 
 /**
  * GET /api/users
@@ -118,4 +118,5 @@ router.put("/:id", [IsValidIdParams, validateReqParamsIdMatch, validateRequestBo
  * @returns {Promise<Response>} 404 - User not found.
  * @returns {Promise<Response>} 500 - An error occurred while deleting the user.
  */router.delete("/:id", [IsValidIdParams, isAuthorized({ allowedPermissions: [PERMISSIONS.DELETE_USER] })], deleteUser);
- export { router };
+
+ export default router
