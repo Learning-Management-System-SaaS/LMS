@@ -1,13 +1,8 @@
 import { Router } from "express";
 import { Signup, Login } from "../controllers/authController";
-import { loginUserSchema } from "../validations/userValidationSchemas";
-import { validateTenantIdMatch } from "../middlewares/validateTenantIdMatch";
-import { validateReqParamsIdMatch } from "../middlewares/validateReqParamsIdMatch";
+import { loginUserSchema, signupUserSchema } from "../validations/userValidationSchemas";
 import { validateRequestBody } from "../middlewares/validateRequestBody";
-import { IsValidIdParams } from "../middlewares/IsValidIdParams";
-import { isAuthorized } from "../middlewares/isAuthorized";
-import { PERMISSIONS } from "../config/permissions";
-import { ROLES } from "../config/roles";
+
 /**
  * Express router to handle authentication related routes.
  *
@@ -31,7 +26,9 @@ const router: Router = Router();
  * @returns {Promise<Response>} 400 - Validation error, missing or incorrect user data.
  * @returns {Promise<Response>} 500 - An error occurred while logging in the user.
  */
-router.post("/login", validateRequestBody(loginUserSchema), Login);
-router.post("/signup", Signup);
 
-export { router };
+router.post("/login", validateRequestBody(loginUserSchema), Login);
+router.post("/signup", validateRequestBody(signupUserSchema),Signup);
+
+
+export default router 

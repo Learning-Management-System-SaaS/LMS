@@ -1,6 +1,10 @@
 import { Response } from "express";
 import { UserService } from "../services/userService";
-import { createUserDTO, userResponseDTO, updateUserDTO } from "../interfaces/users";
+import {
+  createUserDTO,
+  userResponseDTO,
+  updateUserDTO,
+} from "../interfaces/users";
 import { getHashedPassword, isValidPassword } from "../utils/verifyPassword";
 import { handleControllerError } from "../utils/handleContollerErrors";
 import { createResponseObject } from "../utils/createResponseObject";
@@ -19,40 +23,41 @@ const userService = new UserService();
  * @throws {HttpError} if the user is not found or if the password is invalid
  * @throws {HttpError} if there is an internal server error
  */
-export const Login = async (req: customRequest, res: Response): Promise<Response> => {
+export const Login = async ( req: customRequest,res: Response ): Promise<Response> => {
   try {
     // Extract user ID from customRequest parameters
-    const { emailOrUsername, password } = req.body;
+    const { email, password } = req.body;
 
-    // Call the database service to get the user by the tenantId + email or username
-    const user = await userService.loginUser({ emailOrUsername });
+    // Call the database service to get the user by the email 
+    const user = await userService.loginUser({ email });
 
-    if (!user) throw new HttpError({ message: "Invalid credentials", statusCode: 401 });
+    if (!user)
+      throw new HttpError({ message: "Invalid credentials", statusCode: 401 });
+    
     const { password: hashedPassword, ...userWithoutPassword } = user;
+    
     try {
       await isValidPassword(password, hashedPassword);
     } catch (err) {
       const error = err as HttpError;
       if (error.statusCode === 401) {
-        throw new HttpError({ message: "Invalid credentials", statusCode: 401 });
+        throw new HttpError({ message: "Invalid credentials",statusCode: 401 });
       } else {
         throw new HttpError({ message: "Internal server error", statusCode: 500 });
       }
     }
-      const token = generateToken({
-  user:userWithoutPassword,
-  secret: process.env.JWT_SECRET,
-});
-    // Respond with the user data if successfully logged in
+    const token = generateToken({ user: userWithoutPassword, secret: process.env.JWT_SECRET });
+    
+    //save the token within cookie 
+    res.cookie("auth_token", token, {
+    httpOnly: true,       // cannot be accessed by JavaScript (prevents XSS)
+    secure: process.env.NODE_ENV === "production", // true on HTTPS
+    sameSite: "strict",   // CSRF protection
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+  });
 
-   return res.status(200).json(
-  createResponseObject({
-    data: {
-      user: userWithoutPassword,
-      token,
-    },
-  })
-);
+    // Respond with the user data if successfully logged in
+    return res.status(200).json(createResponseObject({data: { user: userWithoutPassword, token }}));
   } catch (error) {
     // Handle any errors that occur during the login of a user
     return handleControllerError({ res, error, defaultErrorMessage: "Failed to login user" });
@@ -65,7 +70,10 @@ export const Login = async (req: customRequest, res: Response): Promise<Response
  * @param res Express Response object
  * @returns A Express Response object with the newly created user
  */
-export const Signup = async (req: customRequest, res: Response): Promise<Response> => {
+export const Signup = async (
+  req: customRequest,
+  res: Response
+): Promise<Response> => {
   try {
     // Extract user data from request body
     const requestBody: createUserDTO = req.body;
@@ -77,9 +85,15 @@ export const Signup = async (req: customRequest, res: Response): Promise<Respons
     const newUser = await userService.createUser(requestBody);
 
     // Respond with the newly created user data
-    return res.status(201).json(createResponseObject<userResponseDTO>({ data: newUser }));
+    return res
+      .status(201)
+      .json(createResponseObject<userResponseDTO>({ data: newUser }));
   } catch (error) {
     // Handle any errors that occur during the creation of a user
-    return handleControllerError({ res, error, defaultErrorMessage: "Failed to create user" });
+    return handleControllerError({
+      res,
+      error,
+      defaultErrorMessage: "Failed to create user",
+    });
   }
 };
