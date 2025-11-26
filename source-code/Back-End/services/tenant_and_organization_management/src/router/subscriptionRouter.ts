@@ -1,102 +1,178 @@
 import { Router } from "express";
-import { createTenant, getTenants, getTenantById, updateTenant, deleteTenant } from "../controllers/tenantController";
-import { createTenantSchema, updateTenantSchema } from "../validations/tenantValidationSchemas";
-import { validateRequestBody } from "../middlewares/validateRequestBody";
+import {
+  getAllSubscriptions,
+  getSubscriptionById,
+  createSubscription,
+  updateSubscription,
+  deleteSubscription,
+  getAllPlans,
+  getPlanById,
+  createPlan,
+  updatePlan,
+  deletePlan,
+  getAllPayments,
+  getPaymentById,
+  createPayment,
+  getPaymentsByTenant,
+} from "../controllers/subscriptionController";
 import { IsValidIdParams } from "../middlewares/IsValidIdParams";
+import { validateReqParamsIdMatch } from "../middlewares/validateReqParamsIdMatch";
 
 /**
- * Express router to handle tenant-related routes.
+ * Express router to handle subscription, plan, and payment-related routes.
  *
  * This router provides the following routes:
- * - GET `/` - Fetch all tenants.
- * - GET `/:id` - Fetch a tenant by ID.
- * - POST `/` - Create a new tenant.
- * - PUT `/:id` - Update a tenant by ID.
- * - DELETE `/:id` - Delete a tenant by ID.
+ * - Subscriptions: GET `/`, GET `/:id`, POST `/`, PUT `/:id`, DELETE `/:id`
+ * - Plans: GET `/plans/all`, GET `/plans/:id`, POST `/plans`, PUT `/plans/:id`, DELETE `/plans/:id`
+ * - Payments: GET `/payments/all`, GET `/payments/:id`, POST `/payments`, GET `/payments/tenant/:tenantId`
  *
  * Middleware:
- * - `validateIdParams` ensures that the tenant ID is valid. It used for routes with `/:id` parameter.
- * - `validateRequestBody` validates request bodies for POST and PUT operations.
+ * - `IsValidIdParams` ensures that the ID is valid.
+ * - `validateReqParamsIdMatch` ensures request body ID matches URL parameter ID.
  *
- * @module TenantRouter
+ * @module SubscriptionRouter
  * @type {Router}
  */
 const router: Router = Router();
 
-/**
- * GET /api/tenants
- *
- * Fetch all tenants from the database.
- *
- * @route GET /api/tenants
- * @group Tenants - Operations related to tenants
- * @access Public
- * @returns {Promise<Response>} 200 - An array of tenants.
- * @returns {Promise<Response>} 500 - An error occurred while fetching tenants.
- */
-router.get("/", getTenants);
+// ============== SUBSCRIPTION ROUTES ==============
 
 /**
- * GET /api/tenants/:id
- *
- * Fetch a single tenant by its ID.
- *
- * @route GET /api/tenants/:id
- * @group Tenants - Operations related to tenants
- * @access Public
- * @param {string} req.params.id - The ID of the tenant to fetch.
- * @returns {Promise<Response>} 200 - The tenant object if found.
- * @returns {Promise<Response>} 400 - Bad request.
+ * GET /api/subscriptions
+ * Fetch all subscriptions
+ * 
+ * @returns {Promise<Response>} 200 - An array of subscriptions.
+ * @returns {Promise<Response>} 500 - An error occurred.
+ */
+router.get("/", getAllSubscriptions);
+
+/**
+ * GET /api/subscriptions/:id
+ * Fetch a subscription by ID
+ * 
+ * @param {string} id - The subscription ID
+ * @returns {Promise<Response>} 200 - The subscription object.
+ * @returns {Promise<Response>} 404 - Subscription not found.
+ */
+router.get("/:id", IsValidIdParams, getSubscriptionById);
+
+/**
+ * POST /api/subscriptions
+ * Create a new subscription
+ * 
+ * @returns {Promise<Response>} 201 - The created subscription.
+ * @returns {Promise<Response>} 400 - Validation error.
+ */
+router.post("/", createSubscription);
+
+/**
+ * PUT /api/subscriptions/:id
+ * Update a subscription
+ * 
+ * @param {string} id - The subscription ID
+ * @returns {Promise<Response>} 200 - The updated subscription.
+ * @returns {Promise<Response>} 404 - Subscription not found.
+ */
+router.put("/:id", [IsValidIdParams, validateReqParamsIdMatch], updateSubscription);
+
+/**
+ * DELETE /api/subscriptions/:id
+ * Delete a subscription
+ * 
+ * @param {string} id - The subscription ID
+ * @returns {Promise<Response>} 200 - Deletion success message.
+ * @returns {Promise<Response>} 404 - Subscription not found.
+ */
+router.delete("/:id", IsValidIdParams, deleteSubscription);
+
+// ============== PLAN ROUTES ==============
+
+/**
+ * GET /api/plans/all
+ * Fetch all plans
+ * 
+ * @returns {Promise<Response>} 200 - An array of plans.
+ * @returns {Promise<Response>} 500 - An error occurred.
+ */
+router.get("/plans/all", getAllPlans);
+
+/**
+ * GET /api/plans/:id
+ * Fetch a plan by ID
+ * 
+ * @param {string} id - The plan ID
+ * @returns {Promise<Response>} 200 - The plan object.
+ * @returns {Promise<Response>} 404 - Plan not found.
+ */
+router.get("/plans/:id", IsValidIdParams, getPlanById);
+
+/**
+ * POST /api/plans
+ * Create a new plan
+ * 
+ * @returns {Promise<Response>} 201 - The created plan.
+ * @returns {Promise<Response>} 400 - Validation error.
+ */
+router.post("/plans", createPlan);
+
+/**
+ * PUT /api/plans/:id
+ * Update a plan
+ * 
+ * @param {string} id - The plan ID
+ * @returns {Promise<Response>} 200 - The updated plan.
+ * @returns {Promise<Response>} 404 - Plan not found.
+ */
+router.put("/plans/:id", [IsValidIdParams, validateReqParamsIdMatch], updatePlan);
+
+/**
+ * DELETE /api/plans/:id
+ * Delete a plan
+ * 
+ * @param {string} id - The plan ID
+ * @returns {Promise<Response>} 200 - Deletion success message.
+ * @returns {Promise<Response>} 404 - Plan not found.
+ */
+router.delete("/plans/:id", IsValidIdParams, deletePlan);
+
+// ============== PAYMENT ROUTES ==============
+
+/**
+ * GET /api/payments/all
+ * Fetch all payments
+ * 
+ * @returns {Promise<Response>} 200 - An array of payments.
+ * @returns {Promise<Response>} 500 - An error occurred.
+ */
+router.get("/payments/all", getAllPayments);
+
+/**
+ * GET /api/payments/:id
+ * Fetch a payment by ID
+ * 
+ * @param {string} id - The payment ID
+ * @returns {Promise<Response>} 200 - The payment object.
+ * @returns {Promise<Response>} 404 - Payment not found.
+ */
+router.get("/payments/:id", IsValidIdParams, getPaymentById);
+
+/**
+ * POST /api/payments
+ * Create a new payment
+ * 
+ * @returns {Promise<Response>} 201 - The created payment.
+ * @returns {Promise<Response>} 400 - Validation error.
+ */
+router.post("/payments", createPayment);
+
+/**
+ * GET /api/payments/tenant/:tenantId
+ * Get payments for a specific tenant
+ * 
+ * @param {string} tenantId - The tenant ID
+ * @returns {Promise<Response>} 200 - An array of tenant payments.
  * @returns {Promise<Response>} 404 - Tenant not found.
- * @returns {Promise<Response>} 500 - An error occurred while fetching the tenant.
  */
-router.get("/:id", IsValidIdParams, getTenantById);
+router.get("/payments/tenant/:tenantId", IsValidIdParams, getPaymentsByTenant);
 
-/**
- * POST /api/tenants
- *
- * Create a new tenant.
- *
- * @route POST /api/tenants
- * @group Tenants - Operations related to tenants
- * @access Public
- * @param {object} req.body - The tenant data for creating a new tenant
- * @returns {Promise<Response>} 201 - The created tenant object.
- * @returns {Promise<Response>} 400 - Validation error, missing or incorrect tenant data.
- * @returns {Promise<Response>} 500 - An error occurred while creating the tenant.
- */
-router.post("/", validateRequestBody(createTenantSchema), createTenant);
-
-/**
- * PUT /api/tenants/:id
- *
- * Update an existing tenant by its ID.
- *
- * @route PUT /api/tenants/:id
- * @group Tenants - Operations related to tenants
- * @access Public
- * @param {string} req.params.id - The ID of the tenant to update.
- * @param {object} req.body - The updated tenant data.
- * @returns {Promise<Response>} 200 - The updated tenant object.
- * @returns {Promise<Response>} 400 - Validation error, missing or incorrect tenant data.
- * @returns {Promise<Response>} 404 - Tenant not found.
- * @returns {Promise<Response>} 500 - An error occurred while updating the tenant.
- */
-router.put("/:id", validateRequestBody(updateTenantSchema), updateTenant);
-
-/**
- * DELETE /api/tenants/:id
- *
- * Delete a tenant by its ID.
- *
- * @route DELETE /api/tenants/:id
- * @group Tenants - Operations related to tenants
- * @access Public
- * @param {string} req.params.id - The ID of the tenant to delete.
- * @returns {Promise<Response>} 200 - A success message indicating the tenant was deleted.
- * @returns {Promise<Response>} 404 - Tenant not found.
- * @returns {Promise<Response>} 500 - An error occurred while deleting the tenant.
- */
-router.delete("/:id", IsValidIdParams, deleteTenant);
-
-export { router };
+export default router;
