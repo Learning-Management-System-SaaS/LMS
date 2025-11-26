@@ -1,0 +1,13 @@
+# Microservice compenets of LMS
+
+* Tenant-Division Component
+-Tenant Tbl, Divisions Tbl, Tenant-Division Tbl, DivisionType Tbl, Subscription Tbl, Plan Tbl, Payment Tbl, Event Tbl
+
+* User Component
+- User Tbl, Role Tbl, Permission Tbl, User-Role Tbl, User-Permission Tbl, Messages Tbl, Notification Tbl, Event-Invitees Tbl
+
+* Course Component
+- Course Tbl, Topic Tbl, Content Tbl, Content-Type Tbl, Course-Progress Tbl
+
+* Enrollment Component
+- Enrollment Tbl, Assessment Tbl, Submission Tbl, Assessment-Types Tbl,  Calendar Tbl
